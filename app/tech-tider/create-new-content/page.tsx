@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useState, useTransition } from "react";
 import { useEditingBlogPostStore } from "@/app/store/useEditingBlogPostStore";
 import { axiosInstance } from "@/app/axios";
+import {TECH_TIDE_USER_BLOG} from "@/app/api_urls";
 
 const MediumLikeEditor = () => {
     const [error, setError] = useState<string | null>(null);
@@ -30,7 +31,7 @@ const MediumLikeEditor = () => {
 
     const saveProduct = async () => {
         try {
-            const response = await axiosInstance.post('http://localhost:8080/api/users/blogs',
+            const response = await axiosInstance.post(`${TECH_TIDE_USER_BLOG}`,
                 {
                     title: blogPost.title,
                     description: blogPost.description,

@@ -7,6 +7,7 @@ import { axiosInstance } from "@/app/axios";
 import { motion } from "motion/react";
 import {useBlogStore} from "@/app/store/useBlogStore";
 import {ContentShimmer} from "@/app/contents/component/ContentShimmer";
+import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
 
 export const ListOfContents = () => {
     const { posts, addPost, updatePost } = useBlogStore(); // Zustand Store for managing blog posts
@@ -14,7 +15,7 @@ export const ListOfContents = () => {
 
     const fetchContents = useCallback( async () => {
 
-        const { data } = await axiosInstance.get("http://localhost:8080/api/blogs");
+        const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}`);
 
         data.content.forEach((post: BlogPost) => {
             const existingPost = posts.find((p) => p.id === post.id);

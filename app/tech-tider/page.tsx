@@ -3,6 +3,7 @@
 import React, { useActionState } from 'react';
 import {redirect, useRouter} from 'next/navigation';
 import axios from 'axios';
+import {TECH_TIDE_AUTH_URL} from "@/app/api_urls";
 
 
 const Page: React.FC = () => {
@@ -20,7 +21,7 @@ const Page: React.FC = () => {
         }
 
         try {
-            const { data } = await axios.post('http://localhost:8080/api/auth', formData,{
+            const { data } = await axios.post(`${TECH_TIDE_AUTH_URL}`, formData,{
                 headers:{
                     "Content-Type":"multipart/form-data"
                 },

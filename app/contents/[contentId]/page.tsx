@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import TipTap from "@/app/tech-tider/components/TipTap";
 import { ViewContentShimmer } from "@/app/contents/component/ViewContentShimmer";
 import { useCurrentFocusedBlogPost } from "@/app/store/useCurrentFocusedBlogPost";
+import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
 
 export default function View() {
     const { contentId } = useParams(); // Get contentId from the URL
@@ -34,7 +35,7 @@ export default function View() {
 
         const fetchContent = async () => {
             try {
-                const { data } = await axiosInstance.get(`/api/blogs/${contentId}`);
+                const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}/${contentId}`);
 
                 if (data) {
                     console.log("Fetched Data:", data);
