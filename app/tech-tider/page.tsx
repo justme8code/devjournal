@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useActionState } from 'react';
-import {redirect, useRouter} from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import axios from 'axios';
 import {TECH_TIDE_AUTH_URL} from "@/app/api_urls";
 

@@ -34,7 +34,7 @@ export const ListOfContents = () => {
                 setError("Could not get contents");
             });
         }
-    }, [fetchContents, posts.length]);
+    }, [fetchContents, posts, posts.length]);
 
     return (
         <div className="px-4 max-md:p-0 md:px-8 lg:px-12">
