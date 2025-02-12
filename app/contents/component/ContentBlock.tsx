@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
     id: string;
@@ -39,7 +40,7 @@ const ContentBlock = ({ id,title, description, coverImageUrl }:Props) => {
                 </div>
 
                 <div className="max-w-40">
-                    <img
+                    <Image
                         src={coverImageUrl || "https://placehold.co/150"}
                         alt="Tech Content"
                         className="rounded-sm "

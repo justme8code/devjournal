@@ -23,7 +23,7 @@ export const AboutUs = () => {
                                 where learning meets creativity.
                             </p>
                             <p>
-                                Whether you're a beginner exploring the world of programming or an experienced
+                                Whether you`&#39;`re a beginner exploring the world of programming or an experienced
                                 developer looking to deepen your knowledge, TechTide offers insightful articles,
                                 hands-on tutorials, and real-world project guides to help you grow.
                             </p>

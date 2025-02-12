@@ -1,5 +1,4 @@
 import {motion} from "motion/react";
-import {AboutUs} from "@/app/components/AboutUs";
 
 interface Props{
     children:React.ReactNode;
