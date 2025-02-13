@@ -44,6 +44,8 @@ const ContentBlock = ({ id,title, description, coverImageUrl }:Props) => {
                         src={coverImageUrl || "https://placehold.co/150"}
                         alt="Tech Content"
                         className="rounded-sm "
+                        width={"800"}
+                        height={"800"}
                     />
                 </div>
             </div>
