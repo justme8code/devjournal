@@ -30,8 +30,7 @@ const Page: React.FC = () => {
             if (data.error) {
                 return {error:data.error};
             }
-            router.replace('/tech-tider/create-new-content');
-            return null;
+            router.push("/tech-tider/create-new-content")
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };
