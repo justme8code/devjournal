@@ -1,54 +1,61 @@
-'use client';
+"use client";
+import React, { useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { TECH_TIDE_AUTH_URL } from "@/app/api_urls";
+import { axiosInstance } from "@/app/axios";
 
-import React, { useActionState } from 'react';
-import {useRouter} from 'next/navigation';
-import {TECH_TIDE_AUTH_URL} from "@/app/api_urls";
-import {axiosInstance} from "@/app/axios";
-
+interface FormDataState {
+    error?: string;
+}
 
 export default function Admin(){
     const router = useRouter();
-    const [data,action, isPending] = useActionState(handleSubmit,undefined);
+    const [data, setData] = useState<FormDataState | null>(null);
+    const [isPending, setIsPending] = useState<boolean>(false);
 
+    async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void> {
+        event.preventDefault();
+        setIsPending(true);
+        setData(null);
 
-    async function  handleSubmit (previousState:unknown, formData:FormData){
+        const formData = new FormData(event.currentTarget);
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
 
-
-        if(username === "" || password === ""){
-            return {error:"Username or password is required"};
+        if (!username || !password) {
+            setData({ error: "Username or password is required" });
+            setIsPending(false);
+            return;
         }
 
         try {
-            const { data } = await axiosInstance.post(`${TECH_TIDE_AUTH_URL}`, formData,{
-                headers:{
-                    "Content-Type":"multipart/form-data"
-                },
-                withCredentials:true
-            });
+            const { data } = await axiosInstance.post<{ error?: string }>(
+                `${TECH_TIDE_AUTH_URL}`,
+                formData,
+                {
+                    headers: { "Content-Type": "multipart/form-data" },
+                    withCredentials: true,
+                }
+            );
+
             if (data.error) {
-                return {error:data.error};
+                setData({ error: data.error });
+            } else {
+                router.push("/tech-tider/create-new-content");
             }
-            router.refresh() ;
-            router.push("/")
         } catch (error) {
-            console.log(error);
-            return { error: 'Invalid credentials' };
+            console.error(error);
+            setData({ error: 'Invalid credentials' });
+        } finally {
+            setIsPending(false);
         }
-
     }
-
-
-
-
-
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-96 flex flex-col items-center">
                 <h2 className="text-2xl font-semibold mb-6">Tech Tide Writer.</h2>
-                <form action={action} className="w-full" >
+                <form onSubmit={handleSubmit} className="w-full">
                     <input
                         type="text"
                         name="username"
@@ -64,7 +71,8 @@ export default function Admin(){
                     <button
                         type="submit"
                         disabled={isPending}
-                        className={`p-2 bg-black text-white rounded-full px-6 w-full ${isPending ? 'bg-gray-300':''} `}>
+                        className={`p-2 bg-black text-white rounded-full px-6 w-full ${isPending ? 'bg-gray-300' : ''}`}
+                    >
                         {isPending ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
@@ -72,5 +80,4 @@ export default function Admin(){
             </div>
         </div>
     );
-};
-
+}
