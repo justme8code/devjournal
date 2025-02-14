@@ -21,7 +21,7 @@ export default function Admin(){
         }
 
         try {
-            const { data } = await axiosInstance.post(`${TECH_TIDE_AUTH_URL}`, formData,{
+            const { data, status } = await axiosInstance.post(`${TECH_TIDE_AUTH_URL}`, formData,{
                 headers:{
                     "Content-Type":"multipart/form-data"
                 }
@@ -30,9 +30,11 @@ export default function Admin(){
             if (data.error) {
                 return {error:data.error};
             }
+            if(status === 200){
+                router.replace("/tech-tider/create-new-content");
+            }
 
-            router.push("/tech-tider/create-new-content")
-            router.refresh();
+            return { error: 'Try logging in again...' };
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };
