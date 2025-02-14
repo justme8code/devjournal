@@ -11,40 +11,32 @@ const Page: React.FC = () => {
     const [data,action, isPending] = useActionState(handleSubmit,undefined);
 
 
-    async function handleSubmit(previousState: unknown, formData: FormData) {
+    async function  handleSubmit (previousState:unknown, formData:FormData){
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
 
-        if (username === "" || password === "") {
-            return { error: "Username or password is required" };
+
+        if(username === "" || password === ""){
+            return {error:"Username or password is required"};
         }
 
         try {
-            const { data } = await axios.post(`${TECH_TIDE_AUTH_URL}`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
+            const { data } = await axios.post(`${TECH_TIDE_AUTH_URL}`, formData,{
+                headers:{
+                    "Content-Type":"multipart/form-data"
                 },
-                withCredentials: true
+                withCredentials:true
             });
-
             if (data.error) {
-                return { error: data.error };
+                return {error:data.error};
             }
-
-            // Wait for a short period before redirecting
-            if (document.cookie.includes("tech-tide-auth-cookie")) {
-                router.push("/tech-tider/create-new-content");
-            } else {
-                // Add some kind of fallback, delay, or error
-                console.log("Cookie not yet available, try again!");
-            }
-
+            router.push("/tech-tider/create-new-content")
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };
         }
-    }
 
+    }
 
 
 

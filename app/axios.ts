@@ -1,9 +1,10 @@
 import axios from 'axios';
+import {TECH_TIDE_BASE_URL} from "@/app/api_urls";
 
 
 
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: `${TECH_TIDE_BASE_URL}`,
     withCredentials: true,
     headers : {
         "Content-Type": "application/json",
