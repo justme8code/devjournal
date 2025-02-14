@@ -22,7 +22,7 @@ export const ContactUs = () => {
                         </p>
 
                         <div className="space-y-2">
-                            <p><span className="font-semibold">📧 Email:</span> info@techtide.com</p>
+                            <p><span className="font-semibold">📧 Email:</span> bjmay302004@gmail.com </p>{/*info@techtide.com*/}
                             <p><span className="font-semibold">📍 Location:</span> TechTide HQ, Lagos, Nigeria</p>
                         </div>
 
