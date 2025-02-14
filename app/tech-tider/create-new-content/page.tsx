@@ -8,7 +8,7 @@ import { useEditingBlogPostStore } from "@/app/store/useEditingBlogPostStore";
 import { axiosInstance } from "@/app/axios";
 import {TECH_TIDE_USER_BLOG} from "@/app/api_urls";
 
-const MediumLikeEditor = () => {
+export default function CreateContentPage(){
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<boolean>(false);
     const [isPending, startTransition] = useTransition();
@@ -87,5 +87,3 @@ const MediumLikeEditor = () => {
         </>
     );
 };
-
-export default MediumLikeEditor;

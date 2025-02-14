@@ -6,7 +6,7 @@ import {TECH_TIDE_AUTH_URL} from "@/app/api_urls";
 import {axiosInstance} from "@/app/axios";
 
 
-const Page: React.FC = () => {
+export default function Admin(){
     const router = useRouter();
     const [data,action, isPending] = useActionState(handleSubmit,undefined);
 
@@ -73,4 +73,3 @@ const Page: React.FC = () => {
     );
 };
 
-export default Page;
