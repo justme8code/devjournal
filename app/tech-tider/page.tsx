@@ -24,8 +24,7 @@ export default function Admin(){
             const { data } = await axiosInstance.post(`${TECH_TIDE_AUTH_URL}`, formData,{
                 headers:{
                     "Content-Type":"multipart/form-data"
-                },
-                withCredentials:true
+                }
             });
 
             if (data.error) {
