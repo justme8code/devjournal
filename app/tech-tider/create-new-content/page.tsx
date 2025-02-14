@@ -7,14 +7,12 @@ import { useState, useTransition } from "react";
 import { useEditingBlogPostStore } from "@/app/store/useEditingBlogPostStore";
 import { axiosInstance } from "@/app/axios";
 import {TECH_TIDE_USER_BLOG} from "@/app/api_urls";
-import {useRouter} from "next/navigation";
 
 export default function CreateContentPage(){
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<boolean>(false);
     const [isPending, startTransition] = useTransition();
     const { blogPost } = useEditingBlogPostStore();
-    const router = useRouter();
 
     const handleSubmit = () => {
         startTransition(async () => {
@@ -51,7 +49,7 @@ export default function CreateContentPage(){
             return null;
         } catch (error) {
             console.error(error);
-            router.push('/tech-tider'); // Redirect on error as well
+            return error;
         }
     };
 
