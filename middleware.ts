@@ -1,16 +1,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import {getCookie} from "@/app/axios";
 
 const COOKIE_NAME = 'tech-tide-auth-cookie';
 export function middleware(request: NextRequest) {
     console.log('Running middleware');
     console.log('Cookies:', request.cookies);
 
-    let jwt = request.cookies.get(COOKIE_NAME)?.value;  // Access the cookie
-    if(!jwt) {
-        jwt = getCookie(COOKIE_NAME)??undefined;
-    }
+    const jwt = request.cookies.get(COOKIE_NAME)?.value;  // Access the cookie
+
     const path = request.nextUrl.pathname;  // Current page path
 
     // If no JWT is found and user is not on the login page, redirect to login
