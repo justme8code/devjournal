@@ -1,53 +1,39 @@
-"use client";
-import React, { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { TECH_TIDE_AUTH_URL } from "@/app/api_urls";
-import { axiosInstance } from "@/app/axios";
+// Next.js 15 Server Component with App Router (Server Actions)
+import { redirect } from 'next/navigation';
+import { TECH_TIDE_AUTH_URL } from '@/app/api_urls';
+import { axiosInstance } from '@/app/axios';
+import { FormEvent } from 'react';
 
-interface FormDataState {
-    error?: string;
-}
-
-export default function Admin(){
-    const router = useRouter();
-    const [data, setData] = useState<FormDataState | null>(null);
-    const [isPending, setIsPending] = useState<boolean>(false);
-
-    async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void> {
+export default async function Admin() {
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        setIsPending(true);
-        setData(null);
-
         const formData = new FormData(event.currentTarget);
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
 
         if (!username || !password) {
-            setData({ error: "Username or password is required" });
-            setIsPending(false);
+            alert('Username or password is required');
             return;
         }
 
         try {
             const { data } = await axiosInstance.post<{ error?: string }>(
-                `${TECH_TIDE_AUTH_URL}`,
+                TECH_TIDE_AUTH_URL,
                 formData,
                 {
-                    headers: { "Content-Type": "multipart/form-data" },
+                    headers: { 'Content-Type': 'multipart/form-data' },
                     withCredentials: true,
                 }
             );
 
             if (data.error) {
-                setData({ error: data.error });
+                alert(data.error);
             } else {
-                router.push("/tech-tider/create-new-content");
+                redirect('/tech-tider/create-new-content');
             }
         } catch (error) {
             console.error(error);
-            setData({ error: 'Invalid credentials' });
-        } finally {
-            setIsPending(false);
+            alert('Invalid credentials');
         }
     }
 
@@ -61,22 +47,22 @@ export default function Admin(){
                         name="username"
                         placeholder="Username"
                         className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+                        required
                     />
                     <input
                         type="password"
                         name="password"
                         placeholder="Password"
                         className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+                        required
                     />
                     <button
                         type="submit"
-                        disabled={isPending}
-                        className={`p-2 bg-black text-white rounded-full px-6 w-full ${isPending ? 'bg-gray-300' : ''}`}
+                        className="p-2 bg-black text-white rounded-full px-6 w-full hover:bg-gray-800"
                     >
-                        {isPending ? 'Logging in...' : 'Login'}
+                        Login
                     </button>
                 </form>
-                {data?.error && <p className="text-red-500 mt-2">{data.error}</p>}
             </div>
         </div>
     );
