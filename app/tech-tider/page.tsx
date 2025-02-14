@@ -2,8 +2,8 @@
 
 import React, { useActionState } from 'react';
 import {useRouter} from 'next/navigation';
-import axios from 'axios';
 import {TECH_TIDE_AUTH_URL} from "@/app/api_urls";
+import {axiosInstance} from "@/app/axios";
 
 
 const Page: React.FC = () => {
@@ -21,7 +21,7 @@ const Page: React.FC = () => {
         }
 
         try {
-            const { data } = await axios.post(`${TECH_TIDE_AUTH_URL}`, formData,{
+            const { data } = await axiosInstance.post(`${TECH_TIDE_AUTH_URL}`, formData,{
                 headers:{
                     "Content-Type":"multipart/form-data"
                 },
