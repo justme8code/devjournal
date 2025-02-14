@@ -11,32 +11,36 @@ const Page: React.FC = () => {
     const [data,action, isPending] = useActionState(handleSubmit,undefined);
 
 
-    async function  handleSubmit (previousState:unknown, formData:FormData){
+    async function handleSubmit(previousState: unknown, formData: FormData) {
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
 
-
-        if(username === "" || password === ""){
-            return {error:"Username or password is required"};
+        if (username === "" || password === "") {
+            return { error: "Username or password is required" };
         }
 
         try {
-            const { data } = await axios.post(`${TECH_TIDE_AUTH_URL}`, formData,{
-                headers:{
-                    "Content-Type":"multipart/form-data"
+            const { data } = await axios.post(`${TECH_TIDE_AUTH_URL}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
                 },
-                withCredentials:true
+                withCredentials: true
             });
+
             if (data.error) {
-                return {error:data.error};
+                return { error: data.error };
             }
-            router.push("/tech-tider/create-new-content")
+
+            // Wait for a short period before redirecting
+            setTimeout(() => {
+                router.push("/tech-tider/create-new-content");
+            }, 500); // Adjust time if necessary
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };
         }
-
     }
+
 
 
 
@@ -47,7 +51,7 @@ const Page: React.FC = () => {
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-96 flex flex-col items-center">
                 <h2 className="text-2xl font-semibold mb-6">Tech Tide Writer.</h2>
-                <form action={action} className="w-full">
+                <form action={action} className="w-full" >
                     <input
                         type="text"
                         name="username"
