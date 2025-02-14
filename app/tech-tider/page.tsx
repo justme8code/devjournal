@@ -30,7 +30,8 @@ export default function Admin(){
             if (data.error) {
                 return {error:data.error};
             }
-            router.prefetch("/tech-tider/create-new-content")
+            router.refresh() ;
+            router.push("/")
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };
