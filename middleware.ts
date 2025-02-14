@@ -24,5 +24,5 @@ export function middleware(request: NextRequest) {
 
 // Adjusted config to apply middleware to both the root and project routes
 export const config = {
-    matcher: ['/tech-tider','/tech-tider/create-new-content:path*'], // The correct matcher pattern
+    matcher: ['/tech-tider', '/tech-tider/create-new-content'], // The correct matcher pattern
 };
