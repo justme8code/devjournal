@@ -7,6 +7,7 @@ export function middleware(request: NextRequest) {
     const jwt = request.cookies.get(COOKIE_NAME)?.value;  // Access the cookie
     const path = request.nextUrl.pathname;  // Current page path
 
+    console.log(request.cookies);
     // Only secure the /tech-tider/create-new-content route
     if (path === '/tech-tider/create-new-content' && !jwt) {
         // If no JWT token and trying to access create-new-content, redirect to login

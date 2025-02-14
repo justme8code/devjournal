@@ -34,7 +34,6 @@ export default function Admin(){
                 router.replace("/tech-tider/create-new-content");
             }
 
-            return { error: 'Try logging in again...' };
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };

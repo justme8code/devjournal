@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+        async rewrites() {
+            return [
+                {
+                    source: '/api/:path*', // Match any request starting with `/api/`
+                    destination: 'https://techtideapi.whitestone-5ff89f6f.northcentralus.azurecontainerapps.io/api/:path*', // Forward to your backend
+                },
+            ];
+        },
 };
 
 export default nextConfig;
