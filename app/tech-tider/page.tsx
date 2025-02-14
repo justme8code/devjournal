@@ -32,9 +32,13 @@ const Page: React.FC = () => {
             }
 
             // Wait for a short period before redirecting
-            setTimeout(() => {
+            if (document.cookie.includes("tech-tide-auth-cookie")) {
                 router.push("/tech-tider/create-new-content");
-            }, 500); // Adjust time if necessary
+            } else {
+                // Add some kind of fallback, delay, or error
+                console.log("Cookie not yet available, try again!");
+            }
+
         } catch (error) {
             console.log(error);
             return { error: 'Invalid credentials' };
