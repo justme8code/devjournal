@@ -7,9 +7,9 @@ export function middleware(request: NextRequest) {
     console.log('Running middleware');
     console.log('Cookies:', request.cookies);
 
-    const jwt = request.cookies.get(COOKIE_NAME);  // Access the cookie
-    if(!jwt){
-        getCookie(COOKIE_NAME);
+    let jwt = request.cookies.get(COOKIE_NAME)?.value;  // Access the cookie
+    if(!jwt) {
+        jwt = getCookie(COOKIE_NAME)??undefined;
     }
     const path = request.nextUrl.pathname;  // Current page path
 
