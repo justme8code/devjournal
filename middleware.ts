@@ -4,21 +4,32 @@ import type { NextRequest } from 'next/server';
 const COOKIE_NAME = 'tech-tide-auth-cookie';
 
 export function middleware(request: NextRequest) {
-    const jwt = request.cookies.get(COOKIE_NAME)?.value;  // Access the cookie
-    const path = request.nextUrl.pathname;  // Current page path
+    // Retrieve the JWT cookie
+    const jwt = request.cookies.get(COOKIE_NAME)?.value;
+    const path = request.nextUrl.pathname;
 
-    console.log(request.cookies);
-    // Only secure the /tech-tider/create-new-content route
-    if (path === '/tech-tider/create-new-content' && !jwt) {
-        // If no JWT token and trying to access create-new-content, redirect to login
+    // Define protected routes
+    const protectedRoutes = ['/tech-tider/create-new-content'];
+
+    // Check if the current path is a protected route
+    const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route));
+
+    // If it's a protected route and no JWT is present
+    if (isProtectedRoute && !jwt) {
+        console.log('No JWT token found. Redirecting to login.');
         return NextResponse.redirect(new URL('/tech-tider', request.url));
     }
 
-    // Allow the request to continue if the user is authorized or if it's any other route
+    // Additional logging for debugging
+    if (isProtectedRoute && jwt) {
+        console.log('JWT token present for protected route. Allowing access.');
+    }
+
+    // Allow the request to continue
     return NextResponse.next();
 }
 
-// Adjusted config to apply middleware only to the create-new-content route
+// Configure middleware to run on specific routes
 export const config = {
-    matcher: '/tech-tider/create-new-content',  // Only apply to this route
+    matcher: ['/tech-tider/create-new-content'],
 };
