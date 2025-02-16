@@ -1,3 +1,4 @@
+'use server';
 import axios from 'axios';
 import {TECH_TIDE_BASE_URL} from "@/app/api_urls";
 
@@ -11,6 +12,7 @@ export const axiosInstance = axios.create({
     }
 });
 // Add a request interceptor to include the token
+/*
 axiosInstance.interceptors.request.use((config) => {
 
     const token = getCookie("tech-tide-auth-cookie"); // Your cookie name
@@ -21,10 +23,11 @@ axiosInstance.interceptors.request.use((config) => {
 }, (error) => {
     return Promise.reject(error);
 });
+*/
 
 
 
-axiosInstance.interceptors.response.use(
+/*axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.message === 'Network Error') {
@@ -32,10 +35,11 @@ axiosInstance.interceptors.response.use(
         }
 
     }
-);
+);*/
 
 
 
+/*
 export const getCookie = (name: string): string | null => {
     const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
         const [key, value] = cookie.split('=');
@@ -45,5 +49,6 @@ export const getCookie = (name: string): string | null => {
 
     return cookies[name] || null;
 };
+*/
 
 

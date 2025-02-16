@@ -12,7 +12,7 @@ export async function login(previousState: unknown, formData: FormData){
         return { error: "Username or password is required" };
     }
 
-    try {
+
         const response = await axiosInstance.post(TECH_TIDE_AUTH_URL, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
@@ -20,16 +20,16 @@ export async function login(previousState: unknown, formData: FormData){
             withCredentials: true // Crucial for cookie handling
         });
 
-        // Check for successful login based on your backend's response structure
-        if (response.status === 200) {
-
-            redirect("/tech-tider/create-new-content");
+        if (response.status !== 200) {
+            // Handle any potential error responses
+            return { error: 'Login failed' };
         }
+        console.log(response.data);
+        // Check for successful login based on your backend's response structure
 
-        // Handle any potential error responses
-        return { error: 'Login failed' };
-    } catch (error) {
-        console.error(error);
-        return { error: 'Invalid credentials' };
-    }
+
+
+    redirect("/tech-tider/create-new-content");
+
+
 }
