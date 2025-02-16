@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/tech-tider', request.url));
     }
 
-    // Additional logging for debugging
+    // Additional logging for debugging...
     if (isProtectedRoute && jwt) {
         console.log('JWT token present for protected route. Allowing access.');
     }

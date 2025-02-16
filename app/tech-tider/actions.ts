@@ -33,5 +33,3 @@ export async function login(previousState: unknown, formData: FormData){
         return { error: 'Invalid credentials' };
     }
 }
-
-export async function logout(){}

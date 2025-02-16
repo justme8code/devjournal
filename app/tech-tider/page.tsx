@@ -1,44 +1,11 @@
 'use client';
 
 import React, { useActionState } from 'react';
-import { useRouter } from 'next/navigation';
-import { TECH_TIDE_AUTH_URL } from "@/app/api_urls";
-import { axiosInstance } from "@/app/axios";
+import {login} from "@/app/tech-tider/actions";
 
 export default function Admin() {
-    const router = useRouter();
-    const [data, action, isPending] = useActionState(handleSubmit, undefined);
+    const [data, action, isPending] = useActionState(login, undefined);
 
-    async function handleSubmit(previousState: unknown, formData: FormData) {
-        const username = formData.get('username') as string;
-        const password = formData.get('password') as string;
-
-        if (username === "" || password === "") {
-            return { error: "Username or password is required" };
-        }
-
-        try {
-            const response = await axiosInstance.post(TECH_TIDE_AUTH_URL, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                },
-                withCredentials: true // Crucial for cookie handling
-            });
-
-            // Check for successful login based on your backend's response structure
-            if (response.status === 200) {
-                // Redirect to the protected route
-                router.replace("/tech-tider/create-new-content");
-                return null;
-            }
-
-            // Handle any potential error responses
-            return { error: 'Login failed' };
-        } catch (error) {
-            console.error(error);
-            return { error: 'Invalid credentials' };
-        }
-    }
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
