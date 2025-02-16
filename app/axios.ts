@@ -1,4 +1,4 @@
-'use server';
+
 import axios from 'axios';
 import {TECH_TIDE_BASE_URL} from "@/app/api_urls";
 

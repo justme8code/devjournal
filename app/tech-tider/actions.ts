@@ -1,8 +1,8 @@
 'use server';
-
 import {axiosInstance} from "@/app/axios";
 import {TECH_TIDE_AUTH_URL} from "@/app/api_urls";
 import {redirect} from "next/navigation";
+import {cookies} from "next/headers";
 
 export async function login(previousState: unknown, formData: FormData){
     const username = formData.get('username') as string;
@@ -24,7 +24,7 @@ export async function login(previousState: unknown, formData: FormData){
             // Handle any potential error responses
             return { error: 'Login failed' };
         }
-        console.log(response.data);
+
         // Check for successful login based on your backend's response structure
 
 

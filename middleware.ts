@@ -7,9 +7,10 @@ export function middleware(request: NextRequest) {
     // Retrieve the JWT cookie
     const jwt = request.cookies.get(COOKIE_NAME)?.value;
     const path = request.nextUrl.pathname;
+    console.log('Cookies:', request.cookies.getAll());
 
     // Define protected routes
-    const protectedRoutes = ['/tech-tider/create-new-content'];
+    const protectedRoutes = ['/tech-tider/create-new-content','/contents'];
 
     // Check if the current path is a protected route
     const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route));
@@ -31,5 +32,5 @@ export function middleware(request: NextRequest) {
 
 // Configure middleware to run on specific routes
 export const config = {
-    matcher: ['/tech-tider/create-new-content'],
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
