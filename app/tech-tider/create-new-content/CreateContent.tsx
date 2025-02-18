@@ -24,6 +24,7 @@ export default function CreateContent() {
                 setTimeout(() => setSuccess(false), 3000);
             } else {
                 setError("Could not create blog post");
+                setTimeout(() => setError(null), 3000);
             }
 
         });
