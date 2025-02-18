@@ -9,26 +9,29 @@ export const axiosInstance = axios.create({
     withCredentials: true,
     headers : {
         "Content-Type": "application/json",
-    }
+    },
+    
 });
-// Add a request interceptor to include the token
-/*
+/*// Add a request interceptor to include the token
 axiosInstance.interceptors.request.use((config) => {
 
-    const token = getCookie("tech-tide-auth-cookie"); // Your cookie name
+    /!*const token = getCookie("tech-tide-auth-cookie"); // Your cookie name
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
-    }
+    }*!/
+    console.log(config);
     return config;
 }, (error) => {
     return Promise.reject(error);
-});
-*/
+});*/
 
 
 
 /*axiosInstance.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        console.log(response);
+        return response
+    },
     (error) => {
         if (error.message === 'Network Error') {
             return Promise.resolve();
@@ -39,7 +42,6 @@ axiosInstance.interceptors.request.use((config) => {
 
 
 
-/*
 export const getCookie = (name: string): string | null => {
     const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
         const [key, value] = cookie.split('=');
@@ -49,6 +51,5 @@ export const getCookie = (name: string): string | null => {
 
     return cookies[name] || null;
 };
-*/
 
 

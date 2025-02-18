@@ -5,13 +5,9 @@ import { SaveIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useTransition } from "react";
 import { useEditingBlogPostStore } from "@/app/store/useEditingBlogPostStore";
-import { axiosInstance } from "@/app/axios";
-import {TECH_TIDE_USER_BLOG} from "@/app/api_urls";
+import createBlogPost from "@/app/api/handlecreateblogpost";
 
-
-
-
-export default function CreateContent(){
+export default function CreateContent() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<boolean>(false);
     const [isPending, startTransition] = useTransition();
@@ -22,38 +18,15 @@ export default function CreateContent(){
             setError(null);
             setSuccess(false);
 
-            const error = await saveProduct();
-            if (error) {
-                setError("Could not create Blog Post");
-            } else {
+            const response = await createBlogPost(blogPost); // Call server action
+            if (response?.success) {
                 setSuccess(true);
-                setTimeout(() => setSuccess(false), 3000); // Hide success message after 3s
+                setTimeout(() => setSuccess(false), 3000);
+            } else {
+                setError("Could not create blog post");
             }
+
         });
-    };
-
-    const saveProduct = async () => {
-        try {
-            const response = await axiosInstance.post(`${TECH_TIDE_USER_BLOG}`,
-                {
-                    title: blogPost.title,
-                    description: blogPost.description,
-                    coverImageUrl: blogPost.coverImageUrl,
-                    content: JSON.stringify(blogPost.content),
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true
-                });
-
-            console.log(response.data);
-            return null;
-        } catch (error) {
-            console.error(error);
-            return error;
-        }
     };
 
     return (
