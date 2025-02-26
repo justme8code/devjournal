@@ -97,10 +97,6 @@ export default function View() {
                 </main>
                 {/* Footer */}
                 <Footer />
-
-
-
-
         </div>
 
         </>

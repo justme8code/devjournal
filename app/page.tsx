@@ -1,4 +1,4 @@
-'use client';
+
 import tech from "@/public/tech.svg";
 import Link from "next/link";
 import {Footer} from "@/app/components/Footer";
