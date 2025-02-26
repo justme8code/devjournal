@@ -1,81 +1,81 @@
 'use client';
 import { useEditor, EditorContent, JSONContent } from '@tiptap/react'
-import 'highlight.js/styles/atom-one-dark.css';
-import StarterKit from '@tiptap/starter-kit'
-import Link from '@tiptap/extension-link'
-import TextAlign from '@tiptap/extension-text-align'
-import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
-import { common, createLowlight } from 'lowlight'
 import {
     Bold, Italic, Heading1, Heading2, Heading3, Link as LinkIcon, List,
-    AlignLeft, AlignCenter, AlignRight, Image as ImageIcon, Code as CodeIcon
+    AlignLeft, AlignCenter, AlignRight, Image as ImageIcon, Code as CodeIcon, Undo, RedoIcon, SaveIcon, Trash2
 } from 'lucide-react'
-import { Image } from '@tiptap/extension-image'
-import {useEffect} from "react";
+import {CustomTipTapExtensionConfig} from "@/app/components/editor_config";
+import {useEffect, useState} from 'react';
 
-//   Initialize lowlight.js for syntax highlighting
-const lowlight = createLowlight(common);
+interface TipTapProps {
+    content?:JSONContent
+    onContentChange: (content: JSONContent) => void
+}
 
-//   Custom Image Extension (to support alignment)
-const CustomImage = Image.extend({
-    addAttributes() {
-        return {
-            ...this.parent?.(),
-            style: {
-                default: 'display: block; margin: auto;',
-                renderHTML: attributes => ({ style: attributes.style }),
-                parseHTML: element => element.style.cssText,
-            },
-        }
-    }
-})
-
-const extensions = [
-    StarterKit,
-    Link.configure({ openOnClick: true }),
-    CustomImage, //  Use the extended image
-    TextAlign.configure({ types: ['heading', 'paragraph', 'image'] }), //  Enable alignment on images
-    CodeBlockLowlight.configure({ lowlight:lowlight}),
-]
-
-const TipTap = ({
-                    onContentChange,
-                    initialContent,
-                    editable,
-                }: {
-    onContentChange: (json: JSONContent) => void;
-    initialContent: object;
-    editable: boolean;
-}) => {
+const TipTap = ({content,onContentChange}:TipTapProps) => {
+    const [wordCount, setWordCount] = useState(0);
     const editor = useEditor({
-        editable:editable,
+        editable:true,
         immediatelyRender:false,
-        extensions,
-        content: initialContent??<p>Write here</p>, // ✅ Load stored content instead of default
+        extensions:CustomTipTapExtensionConfig,
+        content: content??`<p>Type in here</p>`, // ✅ Load stored content instead of default
         editorProps: {
             attributes: {
-                class: 'prose prose-lg sm:prose lg:prose-lg xl:prose-xl mx-auto focus:outline-none font-mono',
+                class: 'prose  max-w-lg:prose-xs w-full sm:prose  lg:prose-lg xl:prose-xl mx-auto focus:outline-none font-mono',
             },
         },
+
         onUpdate: ({ editor }) => {
             const json = editor.getJSON();
             onContentChange(json);
+            const text = editor.getText();
+            setWordCount(text.split(/\s+/).filter(word => word.length > 0).length);
+
         },
+        onCreate: ({ editor }) => {
+            const text = editor.getText();
+            setWordCount(text.split(/\s+/).filter(word => word.length > 0).length);
+        }
+
     });
 
-    // ✅ Sync editor when initialContent updates
-    useEffect(() => {
-        if (editor && initialContent) {
-            editor.commands.setContent(initialContent);
+    const saveDraft = () => {
+        if (editor) {
+            const content = editor.getJSON();
+            localStorage.setItem('draftContent', JSON.stringify(content));
+            alert('Draft saved!');
         }
-    }, [initialContent, editor]); // ✅ Updates only when content changes
+    };
+
+    const clearDraft = () => {
+        if (window.confirm('Are you sure you want to clear the draft?')) {
+            localStorage.removeItem('draftContent');
+            if (editor) {
+                editor.commands.clearContent();
+            }
+            alert('Draft cleared!');
+        }
+    };
+
+
+
+    useEffect(() => {
+        const savedDraft = localStorage.getItem('draftContent');
+        if (savedDraft && editor) {
+            editor.commands.setContent(JSON.parse(savedDraft));
+        }
+    }, [editor]);
+
+
+
+
 
     if (!editor) return null;
 
     return (
         <div className="relative">
             {/* Toolbar */}
-            {editable && <div className="flex gap-2 bg-white shadow-md p-2 rounded-lg border sticky top-0 z-10">
+            {<div className="flex gap-2 bg-white shadow-md p-2 rounded-lg border sticky top-0 z-10 flex-wrap">
                 <button onClick={() => editor.chain().focus().toggleBold().run()}
                         disabled={!editor.can().chain().focus().toggleBold().run()}>
                     <Bold size={16} />
@@ -93,7 +93,7 @@ const TipTap = ({
                 <button onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
                     <Heading3 size={16} />
                 </button>
-                <button onClick={() => editor.chain().focus().setParagraph().run()}>P</button>
+                <button onClick={() =>  editor.chain().focus().setParagraph().run()}>P</button>
                 <button onClick={() => editor.chain().focus().toggleBulletList().run()}>
                     <List size={16} />
                 </button>
@@ -105,10 +105,13 @@ const TipTap = ({
                 </button>
                 <button onClick={() => {
                     const url = prompt('Enter image URL')
-                    if (url) editor.chain().focus().setImage({ src: url }).run()
+                    if (url) {
+                        editor.chain().focus().setImage({ src: url }).run();
+                    }
                 }}>
                     <ImageIcon size={16} />
                 </button>
+
                 <button onClick={() => editor.chain().focus().setTextAlign('left').run()}>
                     <AlignLeft size={16} />
                 </button>
@@ -126,10 +129,30 @@ const TipTap = ({
                 }}>
                     <CodeIcon size={16} />
                 </button>
+
+                <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().chain().focus().undo().run()}>
+                    <Undo size={16} />
+                </button>
+
+                <button onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().chain().focus().redo().run()}>
+                    <RedoIcon size={16} />
+                </button>
+
+                <button onClick={saveDraft}>
+                    <SaveIcon size={16} />
+                </button>
+
+                <button onClick={clearDraft}>
+                    <Trash2 size={16} />
+                </button>
             </div>}
 
             {/* Editor */}
             <EditorContent editor={editor} className="prose max-w-none mt-4"  />
+            {/* Word Count */}
+            <div className="mt-2 text-right text-gray-500">
+                Word Count: {wordCount}
+            </div>
         </div>
     )
 };

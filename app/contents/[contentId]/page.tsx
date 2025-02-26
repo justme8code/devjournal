@@ -7,14 +7,15 @@ import { axiosInstance } from "@/app/axios";
 import 'highlight.js/styles/atom-one-dark.css';
 import NextLink from 'next/link';
 import { useParams } from "next/navigation";
-import TipTap from "@/app/tech-tider/components/TipTap";
-import { ViewContentShimmer } from "@/app/contents/component/ViewContentShimmer";
+import { ViewContentShimmer } from "@/app/components/ViewContentShimmer";
 import { useCurrentFocusedBlogPost } from "@/app/store/useCurrentFocusedBlogPost";
 import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
+import {TipTapDisplay} from "@/app/components/TipTapDisplay";
+import {convertBlogPostToJsonContent} from "@/app/utils/constants_fn";
+import {Logo} from "@/app/Logo";
 
 export default function View() {
     const { contentId } = useParams(); // Get contentId from the URL
-    const [searchQuery, setSearchQuery] = useState("");
     const { post, setFocusedBlog } = useCurrentFocusedBlogPost();
 
     function formatPublishedDate(publishedOn: string) {
@@ -38,14 +39,10 @@ export default function View() {
                 const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}/${contentId}`);
 
                 if (data) {
-                    console.log("Fetched Data:", data);
+                    console.log("Fetched Data:", data.content);
 
-                    // Ensure `content` is properly parsed
-                    const parsedContent = typeof data.content === "string"
-                        ? JSON.parse(data.content)
-                        : data.content;
-
-                    setFocusedBlog({ ...data, content: parsedContent });
+                    const  modifiedData = convertBlogPostToJsonContent(data);
+                    setFocusedBlog(modifiedData);
                 }
             } catch (error) {
                 console.error('Error fetching content:', error);
@@ -57,20 +54,11 @@ export default function View() {
 
     return (
         <>
-            <nav className="bg-white py-4 border-b border-neutral-200 sticky top-0 shadow-sm z-10">
+            <nav className="bg-white py-4 border-b border-neutral-200   shadow-sm z-10">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="flex gap-5 items-center">
-                        <h1 className="text-xl text-gray-800 font-bold">TechTide</h1>
-                        <input
-                            type="text"
-                            placeholder="Search for articles..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-64 p-1 px-2 max-md:hidden bg-neutral-100 outline-none rounded-full"
-                        />
-                        {post?.publishedOn && (
-                            <p className={"font-bold"}>Published on: {formatPublishedDate(post.publishedOn)}</p>
-                        )}
+                        <Logo/>
+
                     </div>
 
                     <NextLink href="/" className="text-gray-600 hover:text-gray-900">Home</NextLink>
@@ -79,29 +67,42 @@ export default function View() {
             </nav>
 
 
-        <div className="flex flex-col h-screen  text-gray-900">
+        <div className="flex flex-col h-screen  justify-between text-gray-900">
             {/* Navbar */}
 
-
-            <div className="flex flex-col justify-between h-screen mx-auto">
                 {/* Content Section */}
-                <main className="container flex flex-col mx-auto px-4 py-8 max-w-screen-lg justify-center items-center">
+                <main className="container flex flex-col mx-auto px-4   max-w-screen-lg justify-center items-center">
+                    <div >
 
-                    {post?.content ? (
-                        <TipTap
-                            onContentChange={() => {}}
-                            initialContent={post.content}
-                            editable={false}
-                        />
-                    ) : (
-                        <ViewContentShimmer />
-                    )}
+
+                        {post?.content ? (
+                            <>
+                                <div className={"max-w-2xl sticky top-0 z-10 bg-neutral-50"}>
+
+                                    <h1 className={"prose-xs font-bold"}>{post?.title}</h1>
+
+                                    {post?.publishedOn && (
+                                        <i className={"prose-xs"}>{formatPublishedDate(post.publishedOn)}</i>
+                                    )}
+                                </div>
+                                {post.description && post.description !== "" && <p>{post?.description}</p>}
+                                <TipTapDisplay content={post.content}/>
+                            </>
+
+                        ) : (
+                            <ViewContentShimmer />
+                        )}
+                    </div>
+
                 </main>
-
                 {/* Footer */}
                 <Footer />
-            </div>
+
+
+
+
         </div>
+
         </>
     );
 }

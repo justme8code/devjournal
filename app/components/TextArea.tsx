@@ -8,7 +8,7 @@ export const TextArea = ({
     placeholder: string;
     content: string;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void,
-    onKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void,
+    onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void,
     className?: string
 }) => {
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

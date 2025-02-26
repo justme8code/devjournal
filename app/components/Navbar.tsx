@@ -1,4 +1,6 @@
 import React from "react";
+import {LogoutButton} from "@/app/components/LogoutButton";
+import {Logo} from "@/app/Logo";
 
 interface NavbarProps {
     override?: boolean; // If true, use custom content instead of defaults
@@ -17,14 +19,20 @@ export const Navbar: React.FC<NavbarProps> = ({
         <nav className={`bg-white shadow-md py-4  ${className}`}>
             <div className="container mx-auto flex justify-between items-center px-4">
                 {/* Left Side (Brand) */}
-                {!override && (
-                    <h1 className="text-xl text-gray-800 font-bold">TechTide</h1>
-                )}
+                <div className={"flex gap-2 items-center space-x-20"}>
+                    {!override && (
+                         <Logo/>
+                    )}
+
+                    {/* Extra Custom Elements */}
+                    {children}
+
+                </div>
 
 
 
-                {/* Extra Custom Elements */}
-                {children}
+                <LogoutButton/>
+
             </div>
         </nav>
     );

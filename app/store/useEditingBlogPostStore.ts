@@ -1,29 +1,38 @@
-import { BlogPost } from "@/app/tech-tider/types";
+import { BlogPost } from "@/app/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-
 type BlogPostStore = {
     blogPost: BlogPost;
-    updateBlogPost: (data: BlogPost) => void;
-    getBlogPost: () => BlogPost; // Add this
+    updatePost: (data: BlogPost) => void;
+    getBlogPost: () => BlogPost;
+    destroyPost: () => void; // Add this
 };
 
 export const useEditingBlogPostStore = create<BlogPostStore>()(
     persist(
         (set, get) => ({
             blogPost: {
-                id:"",
+                id: "",
                 title: "",
                 description: "",
-                content: {}
+                content: undefined,
             },
-            updateBlogPost: (data: BlogPost) => set({ blogPost: data }),
-            getBlogPost: () => get().blogPost, // Add this
+            updatePost: (data: BlogPost) => set({ blogPost: data }),
+            getBlogPost: () => get().blogPost,
+            destroyPost: () =>
+                set({
+                    blogPost: {
+                        id: "",
+                        title: "",
+                        description: "",
+                        content: undefined,
+                    },
+                }),
         }),
         {
             name: "tech-tide-content-created",
-            storage: createJSONStorage(() => sessionStorage),
+            storage: createJSONStorage(() => localStorage),
         }
     )
 );

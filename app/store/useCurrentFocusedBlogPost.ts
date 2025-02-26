@@ -1,5 +1,6 @@
-import { BlogPost } from "@/app/store/useBlogStore";
+
 import { create } from "zustand";
+import { BlogPost } from "../types";
 
 interface CurrentFocusedBlogPostStore {
     post: BlogPost | null;

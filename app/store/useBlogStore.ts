@@ -1,14 +1,7 @@
 import { create } from "zustand";
+import { BlogPost } from "../types";
 
-export type BlogPost = {
-    id: string;
-    title: string;
-    description: string;
-    coverImageUrl?: string;
-    content: object;
-    publishedOn?: string;
-    modifiedOn?: string;
-};
+
 
 interface BlogStore {
     posts: BlogPost[];
@@ -20,7 +13,7 @@ interface BlogStore {
 export const useBlogStore = create<BlogStore>((set) => ({
     posts: [],
 
-    addPost: (post) =>
+    addPost: (post:BlogPost) =>
         set((state) => ({
             posts: [...state.posts, post],
         })),

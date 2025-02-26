@@ -1,12 +1,12 @@
 "use client";
 
-import ContentBlock from "@/app/contents/component/ContentBlock";
-import { BlogPost } from "@/app/tech-tider/types";
+import ContentBlock from "@/app/components/ContentBlock";
+import { BlogPost } from "@/app/types";
 import { useCallback, useEffect, useState } from "react";
 import { axiosInstance } from "@/app/axios";
 import { motion } from "motion/react";
 import {useBlogStore} from "@/app/store/useBlogStore";
-import {ContentShimmer} from "@/app/contents/component/ContentShimmer";
+import {ContentShimmer} from "@/app/components/ContentShimmer";
 import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
 
 export const ListOfContents = () => {
@@ -15,14 +15,14 @@ export const ListOfContents = () => {
 
     const fetchContents = useCallback( async () => {
 
-        const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}`);
+        const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}?page=0&size=100`);
 
-        data.content.forEach((post: BlogPost) => {
-            const existingPost = posts.find((p) => p.id === post.id);
+        data.content.forEach((blogPost:BlogPost) => {
+            const existingPost = posts.find((p) => p.id === blogPost.id);
             if (existingPost) {
-                updatePost(post.id, post); // Update existing post
+                updatePost(blogPost.id, blogPost); // Update existing post
             } else {
-                addPost(post); // Add new post
+                addPost(blogPost); // Add new post
             }
         });
 
@@ -37,11 +37,11 @@ export const ListOfContents = () => {
     }, [fetchContents, posts, posts.length]);
 
     return (
-        <div className="px-4 max-md:p-0 md:px-8 lg:px-12">
+        <div className=" ">
             {error && <div className="text-red-500 text-center my-4">{error}</div>}
 
             {posts.length === 0? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6" aria-live="polite">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6 p-8" aria-live="polite">
                     {
                         Array.from({ length: 20 }).map((_, i:number) => (
                             <ContentShimmer key={i}  />
@@ -49,7 +49,7 @@ export const ListOfContents = () => {
                     }
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6 w-full">
                     {posts.map((post: BlogPost) => (
                         <motion.div
                             key={post.id}

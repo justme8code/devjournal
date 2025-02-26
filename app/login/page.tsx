@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useActionState } from 'react';
-import handleLogin from "@/app/api/handlelogin";
+import {handleLogin} from "@/app/login/actions";
 
 export default function Admin() {
     const [data, action, isPending] = useActionState(handleLogin, undefined);

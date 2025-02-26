@@ -1,11 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import {SidePanel} from "@/app/contents/component/SidePanel";
+import {SidePanel} from "@/app/components/SidePanel";
 import {Footer} from "@/app/components/Footer";
-import {ContentsNavbar} from "@/app/contents/component/ContentsNavbar";
+import {ContentsNavbar} from "@/app/components/ContentsNavbar";
 import Link from "next/link";
 import {ListOfContents} from "@/app/contents/ListOfContents";
 import {Navbar} from "@/app/components/Navbar";
+import {Logo} from "@/app/Logo";
 
 export default function ContentPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -20,7 +21,7 @@ export default function ContentPage() {
             {/* Navbar */}
             <Navbar override={true} className={"flex shadow-none border-b border-neutral-200 "}>
                  <div className={"flex gap-2 items-center"}>
-                     <h1 className="text-xl text-gray-800 font-bold">TechTide</h1>
+                     <Logo/>
                      <input
                          type="text"
                          placeholder="Search for articles..."
@@ -28,6 +29,7 @@ export default function ContentPage() {
                          onChange={handleSearchChange}
                          className="w-64 p-2 px-2 bg-neutral-100 outline-none rounded-full max-md:hidden"
                      />
+
                  </div>
 
                 <Link key="home" href="/" className="text-gray-600 hover:text-gray-900">Home</Link>
@@ -35,10 +37,10 @@ export default function ContentPage() {
 
 
 
-            <div className={"flex mx-auto"}>
+            <div className={"flex justify-center w-full"}>
                 {/* Content Section with Side Panel */}
-                <main className="flex py-8 ">
-                    <div>
+                <main className="flex py-8  max-w-2xl w-full">
+                    <div className={"w-full"}>
                         <ContentsNavbar/>
                         <ListOfContents/>
                     </div>
@@ -46,6 +48,7 @@ export default function ContentPage() {
                 </main>
                 {/* Side Panel */}
                 <SidePanel/>
+
 
             </div>
 
