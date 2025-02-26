@@ -1,3 +1,4 @@
+'use client';
 import {AnimatedPopUp} from "@/app/components/AnimatedPopUp";
 import {useState} from "react";
 
