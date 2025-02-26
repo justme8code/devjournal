@@ -6,6 +6,7 @@ import {AboutUs} from "@/app/components/AboutUs";
 import {ContactUs} from "@/app/components/ContactUs";
 import {Navbar} from "@/app/components/Navbar";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
     return (
@@ -42,10 +43,12 @@ export default function Home() {
                                     <div><Link href={"/contents"} className={"p-3 shadow-2xl bg-black text-white rounded-full"}>Start learning</Link></div>
                                 </div>
                                 <div className="w-1/3">
-                                    <img
+                                    <Image
                                         src={tech.src}
                                         alt="Tech Image"
                                         className="rounded-lg"
+                                        width={1000}
+                                        height={1000}
                                     />
                                 </div>
                             </div>

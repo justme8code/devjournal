@@ -1,6 +1,4 @@
 'use client';
-
-import { useState, useEffect } from 'react';
 import { Footer } from "@/app/components/Footer";
 import { format } from "date-fns";
 import { axiosInstance } from "@/app/axios";
@@ -13,6 +11,7 @@ import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
 import {TipTapDisplay} from "@/app/components/TipTapDisplay";
 import {convertBlogPostToJsonContent} from "@/app/utils/constants_fn";
 import {Logo} from "@/app/Logo";
+import {useEffect} from "react";
 
 export default function View() {
     const { contentId } = useParams(); // Get contentId from the URL
@@ -27,7 +26,7 @@ export default function View() {
             return "Today";
         }
 
-        // Format: Thu, 2nd Feb 2025
+        // Format: e.g: Sunday, 2nd Feb 2025
         return format(date, "EEE, do MMM yyyy");
     }
 
