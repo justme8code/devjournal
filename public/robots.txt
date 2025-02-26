@@ -1,8 +1,7 @@
 User-agent: *
-Disallow: /cgi-bin/
 Disallow: /login
-Disallow: /create
-Disallow: /content/*/edit
-Disallow: /content/*/delete
+Disallow: /contents/create
+Disallow: /contents/*/edit
+Disallow: /contents/*/delete
 
 Sitemap: https://techtide.vercel.app/sitemap.xml
