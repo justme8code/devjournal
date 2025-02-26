@@ -13,6 +13,7 @@ import {convertBlogPostToJsonContent} from "@/app/utils/constants_fn";
 import {Logo} from "@/app/Logo";
 import {useEffect} from "react";
 
+// View content page
 export default function View() {
     const { contentId } = useParams(); // Get contentId from the URL
     const { post, setFocusedBlog } = useCurrentFocusedBlogPost();
