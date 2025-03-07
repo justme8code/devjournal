@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
             },
             {
                 protocol:'https',
-                hostname:'https://tse4.mm.bing.net/th/**'
+                hostname:'tse4.mm.bing.net'
             },
 
             {
