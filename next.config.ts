@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
                 pathname: '/**',
                 search: '',
             },
-
+            {
+                protocol:'https',
+                hostname:'https://lh3.googleusercontent.com/fife/**'
+            },
             {
                 protocol:'https',
                 hostname: 'th.bing.com',
