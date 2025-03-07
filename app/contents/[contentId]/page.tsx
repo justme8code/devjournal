@@ -6,17 +6,17 @@ import 'highlight.js/styles/atom-one-dark.css';
 import NextLink from 'next/link';
 import { useParams } from "next/navigation";
 import { ViewContentShimmer } from "@/app/components/ViewContentShimmer";
-import { useCurrentFocusedBlogPost } from "@/app/store/useCurrentFocusedBlogPost";
 import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
 import {TipTapDisplay} from "@/app/components/TipTapDisplay";
 import {convertBlogPostToJsonContent} from "@/app/utils/constants_fn";
 import {Logo} from "@/app/Logo";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {BlogPost} from "@/app/types";
 
 // View content page
 export default function View() {
     const { contentId } = useParams(); // Get contentId from the URL
-    const { post, setFocusedBlog } = useCurrentFocusedBlogPost();
+    const [ post, setFocusedBlog ] = useState<BlogPost|null>(null);
 
     function formatPublishedDate(publishedOn: string) {
         const date = new Date(publishedOn);
@@ -49,7 +49,8 @@ export default function View() {
         };
 
         fetchContent();
-    }, [contentId, post?.id, setFocusedBlog]); // Include setFocusedBlog in dependencies
+
+    }, [contentId, post?.id]); // Include setFocusedBlog in dependencies
 
     return (
         <div className={"space-y-6"}>
