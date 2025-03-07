@@ -13,7 +13,7 @@ export const AnimatedPopUp = ({children,onClickClose}:Props) => {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="bg-white shadow-lg p-6 rounded-lg w-1/3 text-center"
+                    className="bg-white shadow-lg p-6 rounded-lg w-1/3 max-md:w-full text-center"
                 >
                     {children}
                     <button

@@ -9,7 +9,7 @@ export const ContactUs = () => {
         <>
             <button
                 onClick={() => setShowInfo(!showInfo)}
-                className="text-gray-600 hover:text-gray-900 border px-4 py-1 rounded-md"
+                className="text-gray-600 hover:text-gray-900   px-4 py-1 rounded-md"
             >
                 ContactUs
             </button>

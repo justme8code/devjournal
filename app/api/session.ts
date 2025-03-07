@@ -22,12 +22,12 @@ export async function verifySession() {
     const cookieStore = await cookies();
     const token = cookieStore.get(Cookie_Name)?.value;
     if (!token) {
-        redirect("/tech-tide")
+        redirect("/contents")
     }
     return token;
 }
 
 export async function deleteSession() {
     (await cookies()).delete(Cookie_Name);
-    redirect("/tech-tide");
+    redirect("/contents");
 }

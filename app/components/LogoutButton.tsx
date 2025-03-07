@@ -8,9 +8,9 @@ export const LogoutButton = () => {
     const {loggedIn, setLoggedIn } = useLoggedInUser();
     const { destroyPost } = useEditingBlogPostStore();
     const logOut = async ()=>{
-        await handleLogout();
         setLoggedIn(false);
         destroyPost();
+        await handleLogout();
     }
     return (
         <>

@@ -39,7 +39,6 @@ export default function View() {
                 const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}/${contentId}`);
 
                 if (data) {
-                    console.log("Fetched Data:", data.content);
 
                     const  modifiedData = convertBlogPostToJsonContent(data);
                     setFocusedBlog(modifiedData);
@@ -53,8 +52,8 @@ export default function View() {
     }, [contentId, post?.id, setFocusedBlog]); // Include setFocusedBlog in dependencies
 
     return (
-        <>
-            <nav className="bg-white py-4 border-b border-neutral-200   shadow-sm z-10">
+        <div className={"space-y-6"}>
+            <nav className="bg-white p-2 border-b border-neutral-200   shadow-sm z-10">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="flex gap-5 items-center">
                         <Logo/>
@@ -71,12 +70,12 @@ export default function View() {
             {/* Navbar */}
 
                 {/* Content Section */}
-                <main className="container flex flex-col mx-auto px-4   max-w-screen-lg justify-center items-center">
+                <main className="container flex flex-col mx-auto px-4  max-w-2xl justify-center items-center ">
                     <div >
 
 
                         {post?.content ? (
-                            <>
+                            <div className={"space-y-5"}>
                                 <div className={"max-w-2xl sticky top-0 z-10 bg-neutral-50"}>
 
                                     <h1 className={"prose-xs font-bold"}>{post?.title}</h1>
@@ -85,9 +84,11 @@ export default function View() {
                                         <i className={"prose-xs"}>{formatPublishedDate(post.publishedOn)}</i>
                                     )}
                                 </div>
-                                {post.description && post.description !== "" && <p>{post?.description}</p>}
+                                 <div className={" "}>
+                                     {post.description && post.description !== "" && <p>{post?.description}</p>}
+                                 </div>
                                 <TipTapDisplay content={post.content}/>
-                            </>
+                            </div>
 
                         ) : (
                             <ViewContentShimmer />
@@ -99,6 +100,6 @@ export default function View() {
                 <Footer />
         </div>
 
-        </>
+        </div>
     );
 }

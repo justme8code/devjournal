@@ -16,7 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
 
     return (
-        <nav className={`bg-white shadow-md py-4  ${className}`}>
+        <nav className={`bg-white shadow-md py-4  ${className} max-w-7xl mx-auto`}>
             <div className="container mx-auto flex justify-between items-center px-4">
                 {/* Left Side (Brand) */}
                 <div className={"flex gap-2 items-center space-x-20"}>
@@ -28,8 +28,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {children}
 
                 </div>
-
-
 
                 <LogoutButton/>
 

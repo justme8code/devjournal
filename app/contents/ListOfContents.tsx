@@ -37,11 +37,11 @@ export const ListOfContents = () => {
     }, [fetchContents, posts, posts.length]);
 
     return (
-        <div className=" ">
+        <div className="w-full  pt-40 max-md:pt-0 p-2">
             {error && <div className="text-red-500 text-center my-4">{error}</div>}
 
             {posts.length === 0? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6 p-8" aria-live="polite">
+                <div className="grid grid-cols-1 px-6 gap-6" aria-live="polite">
                     {
                         Array.from({ length: 20 }).map((_, i:number) => (
                             <ContentShimmer key={i}  />
@@ -49,14 +49,14 @@ export const ListOfContents = () => {
                     }
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-6 w-full">
+                <div className=" grid grid-cols-1 xl:grid-cols-1 gap-6 w-full">
                     {posts.map((post: BlogPost) => (
                         <motion.div
                             key={post.id}
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2, ease: [0, 0.71, 0.2, 1.01] }}
-                            className="w-full"
+                            className="w-full flex justify-center"
                         >
                             <ContentBlock
                                 id={post.id}

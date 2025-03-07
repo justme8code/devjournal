@@ -1,16 +1,38 @@
-import Link from "next/link";
+'use client';
+import { useState } from 'react';
+import { Button } from "@/app/components/Button";
 
 export const ContentsNavbar = () => {
-    return (
+    const [activeButton, setActiveButton] = useState<string | null>(null);
 
-            <div className="flex flex-col mb-10 sticky top-0 bg-white shadow-sm z-20 ">
-                {/* Latest Link */}
-                <div className={"flex"}>
-                    <Link href="#" className="text-lg font-semibold text-gray-800 hover:text-gray-900">
-                        Latest
-                    </Link>
-                </div>
-                <div className="border-b border-neutral-200 mt-2 w-full"></div> {/* Gray line after Latest */}
+    const handleButtonClick = (button: string) => {
+        setActiveButton(button);
+    };
+
+    const buttons = [
+        "Latest", "Trend", "Most Viewed", "AI", "Programming",
+        "Cybersecurity", "Cloud", "My Posts", "Saved",
+        "Podcasts", "Tech News", "Startups"
+    ];
+
+    return (
+        <>
+            {/* Normal Navbar (Desktop) */}
+            <div className="hidden md:block mb-10 bg-white shadow-sm z-20 fixed top-0 w-full max-w-xl pt-20">
+                <section className="flex items-center pt-2 px-2 gap-2 flex-wrap whitespace-nowrap">
+                    {buttons.map((btn) => (
+                        <Button
+                            key={btn}
+                            text={btn}
+                            className={`font-bold px-3 py-1 rounded-full whitespace-nowrap ${
+                                activeButton === btn ? 'bg-indigo-500 text-white' : 'bg-gray-100 hover:bg-indigo-200'
+                            }`}
+                            onClick={() => handleButtonClick(btn)}
+                        />
+                    ))}
+                </section>
+                <div className="border-b border-neutral-200 mt-2 w-full"></div>
             </div>
+        </>
     );
 };

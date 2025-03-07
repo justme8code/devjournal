@@ -8,6 +8,7 @@ interface Props {
     width?: number;
     height?: number;
     className?: string;
+    imageClassName?: string;
 }
 
 const isValidUrl = (url?: string): boolean => {
@@ -20,6 +21,7 @@ const CustomImagePlaceholder = ({
                                     width = 800,
                                     height = 800,
                                     className = "",
+                                    imageClassName = "",
                                 }: Props) => {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [imageError, setImageError] = useState(false);
@@ -27,7 +29,7 @@ const CustomImagePlaceholder = ({
     const verifiedSrc = isValidUrl(src) ? src : undefined;
 
     return (
-        <div className={`${className} w-full max-w-40 h-full max-h-40`}>
+        <div className={`w-full h-full ${className}`}>
             {/* Placeholder (while loading or on error) */}
             {!imageLoaded || imageError ? (
                 <div className="bg-gray-300 p-4">
@@ -46,7 +48,7 @@ const CustomImagePlaceholder = ({
                     height={height}
                     className={`transition-opacity duration-300 ${
                         imageLoaded ? "opacity-100" : "opacity-0"
-                    }`}
+                    } w-full h-full ${imageClassName}`}
                     onLoad={() => setImageLoaded(true)}
                     onError={() => setImageError(true)}
                 />

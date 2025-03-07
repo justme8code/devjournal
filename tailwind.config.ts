@@ -18,6 +18,11 @@ export default {
   plugins: [
      typography
   ],
+  safelist:[
+      "object-cover",
+      "w-full",
+      "h-full"
+  ]
 } satisfies Config;
 
 

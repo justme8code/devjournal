@@ -4,9 +4,9 @@ import Link from "next/link";
 import {Footer} from "@/app/components/Footer";
 import {AboutUs} from "@/app/components/AboutUs";
 import {ContactUs} from "@/app/components/ContactUs";
-import {Navbar} from "@/app/components/Navbar";
 import Head from "next/head";
 import Image from "next/image";
+import {Logo} from "@/app/Logo";
 
 export default function Home() {
     return (
@@ -21,22 +21,21 @@ export default function Home() {
                 <meta property="og:url" content="https://techtide.vercel.app" />
             </Head>
 
-            <div className="flex flex-col min-h-screen bg-white text-gray-900">
-                {/* Navbar */}
+            <nav className={"flex justify-between gap-3 p-3  fixed top-0 bg-white w-full"} >
+                <Logo/>
+                <ul className="flex space-x-2 items-center">
+                    <li><Link href="/contents" className="text-gray-600 hover:text-gray-900">Contents</Link></li>
+                    <li><AboutUs/></li>
+                    <li><ContactUs/></li>
+                </ul>
+            </nav>
+            <div className="flex flex-col min-h-screen bg-white text-gray-900  ">
 
-                <Navbar  >
-                    <ul className="flex space-x-6 items-center">
-                        <li><Link href="/" className="text-gray-600 hover:text-gray-900">Home</Link></li>
-                        <li><AboutUs/></li>
-                        <li><ContactUs/></li>
-                    </ul>
-                </Navbar>
 
-                <div className="flex-grow">
                     {/* Hero Section */}
                     <section className="bg-gradient-to-r from-blue-50 via-gray-100 to-gray-300 py-20 text-center">
                         <div className="container mx-auto px-4">
-                            <div className="flex justify-center items-center space-x-8">
+                            <div className="flex justify-center items-center space-x-8 max-sm:flex-col">
                                 <div className="text-left max-w-lg space-y-10">
                                     <h2 className="text-6xl font-bold">Ready To Ride the Wave of Innovation</h2>
                                     <h2 className="mt-4 text-xl">Exploring the latest breakthroughs and trends in technology.</h2>
@@ -54,11 +53,10 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-                </div>
 
-                {/* Footer */}
-                <Footer/>
+
             </div>
+            <Footer/>
         </>
 
     );
