@@ -61,8 +61,11 @@ export default function View() {
 
                     </div>
 
-                    <NextLink href="/" className="text-gray-600 hover:text-gray-900">Home</NextLink>
+                     <div className={"flex gap-10"}>
+                         <NextLink href="/" className="text-gray-600 hover:text-gray-900">Home</NextLink>
+                         <NextLink href="/contents" className="text-gray-600 hover:text-gray-900">Contents</NextLink>
 
+                     </div>
                 </div>
             </nav>
 

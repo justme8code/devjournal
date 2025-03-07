@@ -10,15 +10,13 @@ export const ContentsNavbar = () => {
     };
 
     const buttons = [
-        "Latest", "Trend", "Most Viewed", "AI", "Programming",
-        "Cybersecurity", "Cloud", "My Posts", "Saved",
-        "Podcasts", "Tech News", "Startups"
+        "Latest", "Trending", "Most Viewed", "Microsoft Azure"
     ];
 
     return (
         <>
             {/* Normal Navbar (Desktop) */}
-            <div className="hidden md:block mb-10 bg-white shadow-sm z-20 fixed top-0 w-full max-w-xl pt-20">
+            <div className="hidden md:block mb-10 bg-white shadow-sm z-20 fixed top-0 w-full max-w-2xl pt-20">
                 <section className="flex items-center pt-2 px-2 gap-2 flex-wrap whitespace-nowrap">
                     {buttons.map((btn) => (
                         <Button

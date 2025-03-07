@@ -25,9 +25,9 @@ export default function ContentPage() {
 
 
             <div className="flex flex-col min-h-screen bg-white text-gray-900">
-                <div className="flex justify-center w-full">
+                <div className="flex justify-center ">
                     {/* Main Content */}
-                    <main className="w-full max-w-2xl">
+                    <main className="w-full max-w-2xl  ">
                         <ContentsNavbar />
                         <ListOfContents />
                     </main>

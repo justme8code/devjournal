@@ -37,7 +37,7 @@ export const ListOfContents = () => {
     }, [fetchContents, posts, posts.length]);
 
     return (
-        <div className="w-full  pt-40 max-md:pt-0 p-2">
+        <div className="w-full  pt-20 max-md:pt-0 p-2">
             {error && <div className="text-red-500 text-center my-4">{error}</div>}
 
             {posts.length === 0? (
