@@ -24,3 +24,7 @@
         left: 100%;
     }
 }
+
+.tip-tap-link a {
+    color: blue;
+}

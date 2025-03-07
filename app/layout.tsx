@@ -34,6 +34,10 @@ export const metadata: Metadata = {
                 height: 630,
                 alt: "TechTide Cover Image",
             },
+            {
+                url: "https://techtide.vercel.app/tech.svg", // Replace with actual image
+                alt: "TechTide Cover Image",
+            }
         ],
     },
     twitter: {

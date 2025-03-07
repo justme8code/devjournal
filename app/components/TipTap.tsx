@@ -21,7 +21,7 @@ const TipTap = ({content,onContentChange}:TipTapProps) => {
         content: content??`<p>Type in here</p>`, // ✅ Load stored content instead of default
         editorProps: {
             attributes: {
-                class: 'prose  max-w-lg:prose-xs w-full sm:prose  lg:prose-lg xl:prose-xl mx-auto focus:outline-none font-mono',
+                class: 'prose  max-w-lg:prose-xs w-full sm:prose lg:prose-lg xl:prose-xl mx-auto focus:outline-none font-mono',
             },
         },
 

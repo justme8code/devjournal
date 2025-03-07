@@ -8,6 +8,8 @@ import { Image } from '@tiptap/extension-image'
 import 'highlight.js/styles/atom-one-dark.css';
 import Paragraph from '@tiptap/extension-paragraph'
 import {ImageResize} from "tiptap-extension-resize-image";
+import '../Shimmer.css';
+
 
 const lowlight = createLowlight(common);
 
@@ -33,11 +35,19 @@ const CustomImage = Image.extend({
 const CustomTipTapExtensionConfig = [
     StarterKit,
     ImageResize,
-    Link.configure({ openOnClick: true }),
     Paragraph,
     CustomImage, //  Use the extended image
     TextAlign.configure({ types: ['heading', 'paragraph', 'image'] }), //  Enable alignment on images
     CodeBlockLowlight.configure({ lowlight:lowlight}),
+    Link.configure({
+        protocols: ['ftp', 'mailto'],
+        openOnClick: true,
+        HTMLAttributes: {
+            class: 'tip-tap-link'
+
+        },
+    })
+
 ]
 
 export {CustomTipTapExtensionConfig}
