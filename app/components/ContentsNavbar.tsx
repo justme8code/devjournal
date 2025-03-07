@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from "@/app/components/Button";
 
 export const ContentsNavbar = () => {
-    const [activeButton, setActiveButton] = useState<string | null>(null);
+    const [activeButton, setActiveButton] = useState<string | null>("Latest");
 
     const handleButtonClick = (button: string) => {
         setActiveButton(button);
