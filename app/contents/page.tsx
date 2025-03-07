@@ -4,12 +4,23 @@ import { Footer } from "@/app/components/Footer";
 import { ContentsNavbar } from "@/app/components/ContentsNavbar";
 import { ListOfContents } from "@/app/contents/ListOfContents";
 import { MobileNavbar } from '../components/MobileNavabar';
+import Head from "next/head";
 
 
 export default function ContentPage() {
 
     return (
         <>
+            <Head>
+                <title>Read on Techtide</title>
+                <meta name="description" content="Stay updated with the latest in tech, AI, and programming." />
+                <meta name="keywords" content="Tech, AI, Programming, Java, React, Spring Boot" />
+                <meta name="author" content="Thompson" />
+                <meta property="og:title" content="TechTide - The Future of Tech" />
+                <meta property="og:description" content="Stay updated with the latest in tech, AI, and programming." />
+                <meta property="og:url" content="https://techtide.vercel.app/contents" />
+            </Head>
+
                 <MobileNavbar/>
 
 
