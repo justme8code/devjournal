@@ -1,11 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { Button } from "@/app/components/Button";
-import {useBlogStore} from "@/app/store/useBlogStore";
+
 
 export const ContentsNavbar = () => {
     const [activeButton, setActiveButton] = useState<string | null>("Latest");
-    const {posts,modifyPosts} = useBlogStore();
 
     const handleButtonClick = (button: string) => {
         setActiveButton(button);
