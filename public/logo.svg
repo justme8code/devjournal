@@ -1,20 +1,5 @@
-<svg
-        width="99"
-        height="50"
-        viewBox="0 0 130 50"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
->
-    <!-- TechTide Text -->
-    <text x="0" y="35" font-family="Arial, sans-serif" font-size="30" fill="#c8722c" font-weight="bold">
-        TechTide
-    </text>
-
-    <!-- Wave Element -->
-    <path
-            d="M0,40 C20,20 40,20 50,40 C60,60 80,60 90,40 C100,20 120,20 130,40"
-            stroke="#c8722c"
-            stroke-width="4"
-            fill="none"
-    />
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Text-Only Logo with Black Background -->
+    <rect width="400" height="100" fill="black"/>
+    <text x="50" y="70" font-family="monospace" font-size="50" font-weight="bold" fill="#0f0">DevJournal</text>
 </svg>

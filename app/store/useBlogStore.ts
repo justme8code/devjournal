@@ -5,6 +5,7 @@ import { BlogPost } from "../types";
 
 interface BlogStore {
     posts: BlogPost[];
+    modifyPosts:(newPosts: BlogPost[]) => void;
     addPost: (post: BlogPost) => void;
     updatePost: (id: string, updatedPost: Partial<BlogPost>) => void;
     deletePost: (id: string) => void;
@@ -29,4 +30,9 @@ export const useBlogStore = create<BlogStore>((set) => ({
         set((state) => ({
             posts: state.posts.filter((post) => post.id !== id),
         })),
+
+    modifyPosts: (newPosts: BlogPost[]) => set(() => ({
+        posts:newPosts
+    }))
+
 }));

@@ -7,7 +7,7 @@ export const Logo = () => {
                priority
                src={ttlogo}
                alt="TechTide Logo"
-               className={"max-w-36"}
+               className={"max-w-32"}
            />
 
     );
