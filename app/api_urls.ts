@@ -1,4 +1,4 @@
-const TECH_TIDE_BASE_URL : string = "https://techtideapi.whitestone-5ff89f6f.northcentralus.azurecontainerapps.io";
+const TECH_TIDE_BASE_URL : string = "https://techtideapi.lemonriver-d3a3bc2b.northcentralus.azurecontainerapps.io";
 const TECH_TIDE_BLOGS_URL : string  = `/api/blogs`
 const TECH_TIDE_USER_BLOG : string = `/api/users/blogs`
 const TECH_TIDE_AUTH_URL : string = `/api/auth`
