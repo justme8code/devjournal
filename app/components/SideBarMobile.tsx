@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Button } from "@/app/components/Button";
 import { FaTimes } from "react-icons/fa";
 import { Blocks } from "lucide-react";
+import {useTabStore} from "@/app/store/useTabStore";
 
 export const SideBarMobile = () => {
-    const [activeButton, setActiveButton] = useState<string | null>(null);
+    const {tab,setTab} = useTabStore();
     const [sidebarOpen, setSidebarOpen] = useState(false); // Controls sidebar visibility
 
     const handleButtonClick = (button: string) => {
-        setActiveButton(button);
+        setTab(button);
         setSidebarOpen(false); // Close sidebar when a category is selected
     };
 
@@ -23,7 +24,7 @@ export const SideBarMobile = () => {
         <>
             {/* Mobile Sidebar Button */}
             <div className="md:hidden  flex justify-between items-center bg-white ">
-                <h3 className="font-semibold">{activeButton || ""}</h3>
+                <h3 className="font-semibold">{tab}</h3>
                 <button onClick={() => setSidebarOpen(true)} className="p-2 bg-gray-100 rounded-full">
 
                     <Blocks  className="text-gray-700" />
@@ -47,7 +48,7 @@ export const SideBarMobile = () => {
                             key={btn}
                             text={btn}
                             className={`font-bold px-3 py-2 rounded-lg text-left ${
-                                activeButton === btn ? "bg-indigo-500 text-white" : "bg-gray-100 hover:bg-indigo-200"
+                                tab === btn ? "bg-indigo-500 text-white" : "bg-gray-100 hover:bg-indigo-200"
                             }`}
                             onClick={() => handleButtonClick(btn)}
                         />

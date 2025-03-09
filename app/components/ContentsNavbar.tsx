@@ -3,6 +3,7 @@ import { Button } from "@/app/components/Button";
 import {useBlogStore} from "@/app/store/useBlogStore";
 import {exploreBlogPost} from "@/app/contents/actions";
 import {useTabStore} from "@/app/store/useTabStore";
+import {navTabs} from "@/app/const_data";
 
 
 export const ContentsNavbar = () => {
@@ -25,16 +26,14 @@ export const ContentsNavbar = () => {
     };
 
     //link
-    const buttons = [
-        "Feed","Latest", "Trending", "Most Viewed", "Microsoft Azure"
-    ];
+
 
     return (
         <>
             {/* Normal Navbar (Desktop) */}
             <div className="hidden md:block mb-10 bg-white shadow-sm z-20 fixed top-0 w-full max-w-2xl pt-20">
                 <section className="flex items-center pt-2 px-2 gap-2 flex-wrap whitespace-nowrap">
-                    {buttons.map((btn) => (
+                    {navTabs.map((btn) => (
                         <Button
                             key={btn}
                             text={btn}
