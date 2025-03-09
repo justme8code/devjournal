@@ -11,17 +11,17 @@ export const ContentsNavbar = () => {
 
     const handleButtonClick = async (button: string) => {
         setTab(button);
-            if(button !=="Feed" && button !==tab){
-                const {data,success} = await exploreBlogPost(button.toLowerCase());
-                console.log(data);
+        if (button !== "Feed" && button !== tab) {
+            const { data, success } = await exploreBlogPost(button.toLowerCase());
+            console.log(data);
 
-                if(success && data.length> 0){
-                    modifyPosts(data);
-                }else{
-                    modifyPosts(data);
-                }
+            if (success && data.length > 0) {
+                modifyPosts(data);
+            } else {
+                console.error("Failed to fetch blog posts or no posts available");
+                modifyPosts([]); // Clear posts or handle accordingly
             }
-
+        }
     };
 
     //link
