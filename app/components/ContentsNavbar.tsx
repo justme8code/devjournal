@@ -20,7 +20,7 @@ export const ContentsNavbar = () => {
                 modifyPosts(data);
             } else {
                 console.error("Failed to fetch blog posts or no posts available");
-                modifyPosts([]); // Clear posts or handle accordingly
+                modifyPosts(null); // Clear posts or handle accordingly
             }
         }
     };
