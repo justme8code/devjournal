@@ -1,13 +1,24 @@
 'use client';
 import { useState } from 'react';
 import { Button } from "@/app/components/Button";
+import {useBlogStore} from "@/app/store/useBlogStore";
+import {exploreBlogPost} from "@/app/contents/actions";
 
 
 export const ContentsNavbar = () => {
     const [activeButton, setActiveButton] = useState<string | null>("Latest");
+    const {modifyPosts} = useBlogStore();
 
-    const handleButtonClick = (button: string) => {
-        setActiveButton(button);
+    const handleButtonClick = async (button: string) => {
+        if(button){
+            const {data,success} = await exploreBlogPost(button.toLowerCase());
+            if(success){
+                modifyPosts(data);
+                setActiveButton(button);
+            }
+        }
+
+
     };
 
     //link
@@ -17,6 +28,8 @@ export const ContentsNavbar = () => {
 
     // based on what button is clicked we want to fetch blogs
     // by modifying the global useBlogstoreState
+
+
 
 
     return (

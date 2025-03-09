@@ -8,6 +8,7 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+const devJournal = "https://devjournal.vercel.app";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -15,37 +16,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "TechTide - The Future of Tech",
-    authors: [{ name: "Thompson Oretan", url: "https://techtide.vercel.app" }],
+    title: `${devJournal} - The Future of Tech`,
+    authors: [{ name: "Thompson Oretan", url: `${devJournal}` }],
     applicationName: "TechTide",
     category: "Technology",
     robots: "index, follow",
     description: "Stay updated with the latest in tech, AI, and programming.",
     openGraph: {
-        title: "TechTide - The Future of Tech",
+        title: "DevJournal - The Future of Tech",
         description: "Stay updated with the latest in tech, AI, and programming.",
-        url: "https://techtide.vercel.app",
+        url: `${devJournal}`,
         siteName: "TechTide",
         type: "website",
         images: [
             {
-                url: "https://techtide.vercel.app/logo.svg", // Replace with actual image
+                url: `${devJournal}/logo.svg`, // Replace with actual image
                 width: 1200,
                 height: 630,
                 alt: "TechTide Cover Image",
             },
             {
-                url: "https://techtide.vercel.app/tech.svg", // Replace with actual image
-                alt: "TechTide Cover Image",
+                url: `${devJournal}/tech.svg`, // Replace with actual image
+                alt: "Devjournal Cover Image",
             }
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "TechTide - The Future of Tech",
+        title: "DevJournal - The Future of Tech",
         description: "Stay updated with the latest in tech, AI, and programming.",
         creator: "@justme8code", // Replace with your Twitter handle if you have one
-        images: ["https://techtide.vercel.app/logo.svg"], // Same image for Twitter preview
+        images: [`${devJournal}/logo.svg`], // Same image for Twitter preview
     },
 };
 
