@@ -58,7 +58,8 @@ export async function updateBlogPost(blogPost:BlogPostResponseType) {
 
 export async function exploreBlogPost(keyword:string){
     const response = await axiosInstance
-        .get(`${TECH_TIDE_USER_BLOG}/explorer?keyword=${keyword}`);
+        .get(`${TECH_TIDE_BLOGS_URL}/explorer?keyword=${keyword}`);
+
     return {success: response.status === 200, data: response.data}
 }
 

@@ -1,36 +1,33 @@
 'use client';
-import { useState } from 'react';
 import { Button } from "@/app/components/Button";
 import {useBlogStore} from "@/app/store/useBlogStore";
 import {exploreBlogPost} from "@/app/contents/actions";
+import {useTabStore} from "@/app/store/useTabStore";
 
 
 export const ContentsNavbar = () => {
-    const [activeButton, setActiveButton] = useState<string | null>("Latest");
+    const {tab, setTab} = useTabStore();
     const {modifyPosts} = useBlogStore();
 
     const handleButtonClick = async (button: string) => {
-        if(button){
-            const {data,success} = await exploreBlogPost(button.toLowerCase());
-            if(success){
-                modifyPosts(data);
-                setActiveButton(button);
-            }
-        }
+        setTab(button);
+            if(button !=="Feed" && button !==tab){
+                const {data,success} = await exploreBlogPost(button.toLowerCase());
+                console.log(data);
 
+                if(success && data.length> 0){
+                    modifyPosts(data);
+                }else{
+                    modifyPosts(data);
+                }
+            }
 
     };
 
     //link
     const buttons = [
-        "Latest", "Trending", "Most Viewed", "Microsoft Azure"
+        "Feed","Latest", "Trending", "Most Viewed", "Microsoft Azure"
     ];
-
-    // based on what button is clicked we want to fetch blogs
-    // by modifying the global useBlogstoreState
-
-
-
 
     return (
         <>
@@ -42,7 +39,7 @@ export const ContentsNavbar = () => {
                             key={btn}
                             text={btn}
                             className={`font-bold px-3 py-1 rounded-full whitespace-nowrap ${
-                                activeButton === btn ? 'bg-indigo-500 text-white' : 'bg-gray-100 hover:bg-indigo-200'
+                                tab === btn ? 'bg-indigo-500 text-white' : 'bg-gray-100 hover:bg-indigo-200'
                             }`}
                             onClick={() => handleButtonClick(btn)}
                         />

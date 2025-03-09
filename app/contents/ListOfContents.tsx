@@ -8,34 +8,38 @@ import { motion } from "motion/react";
 import {useBlogStore} from "@/app/store/useBlogStore";
 import {ContentShimmer} from "@/app/components/ContentShimmer";
 import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
+import {useTabStore} from "@/app/store/useTabStore";
 
 export const ListOfContents = () => {
     const { posts, addPost, updatePost } = useBlogStore(); // Zustand Store for managing blog posts
+    const { tab} = useTabStore();
     const [error, setError] = useState<string | null>(null);
 
     const fetchContents = useCallback( async () => {
 
-        const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}?page=0&size=100`);
+        if(tab === "Feed"){
+            const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}?page=0&size=100`);
 
-        data.content.forEach((blogPost:BlogPost) => {
-            const existingPost = posts.find((p) => p.id === blogPost.id);
-            if (existingPost) {
-                updatePost(blogPost.id, blogPost); // Update existing post
-            } else {
-                addPost(blogPost); // Add new post
-            }
-        });
+            data.content.forEach((blogPost:BlogPost) => {
+                const existingPost = posts.find((p) => p.id === blogPost.id);
+                if (existingPost) {
+                    updatePost(blogPost.id, blogPost); // Update existing post
+                } else {
+                    addPost(blogPost); // Add new post
+                }
+            });
+        }
 
-    }, [posts, addPost, updatePost]);
+
+    }, [addPost, posts, tab, updatePost]);
 
     useEffect(() => {
-        if(!posts || posts.length <= 0){
+
             fetchContents().catch(() => {
                 setError("Could not get contents");
             });
-        }
-    }, [fetchContents, posts, posts.length]);
 
+    }, [fetchContents,tab]);
     return (
         <div className="w-full  pt-20 max-md:pt-0 p-2">
             {error && <div className="text-red-500 text-center my-4">{error}</div>}
