@@ -11,7 +11,7 @@ export const ContactUs = () => {
                 onClick={() => setShowInfo(!showInfo)}
                 className="text-gray-600 hover:text-gray-900 py-1 rounded-md"
             >
-                ContactUs
+                Contact Us
             </button>
             {showInfo && (
                 <AnimatedPopUp onClickClose={() => setShowInfo(false)}>

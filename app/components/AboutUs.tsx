@@ -11,7 +11,7 @@ export const AboutUs = () => {
                 onClick={() => setShowInfo(!showInfo)}
                 className="text-gray-600 hover:text-gray-900  py-1 rounded-md"
             >
-                AboutUs
+                About Us
             </button>
             {
                 showInfo && (
