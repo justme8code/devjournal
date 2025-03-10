@@ -32,7 +32,6 @@ export async function createBlogPost(blogPost:BlogPostResponseType) {
 
 export async function deleteBlogPost(blogPostId:string) {
     const token = await verifySession();
-
     const response = await axiosInstance.delete(`${TECH_TIDE_USER_BLOG}/${blogPostId}`,
         {
             headers: {

@@ -14,14 +14,17 @@ export async function handleLogin(previousState: unknown, formData: FormData) {
     if (username === "" || password === "") {
         return { error: "Username or password is required" };
     }
+    console.log(username, password);
     // Make the request to the backend
-    const { data } = await axiosInstance.post<{ userId: string; jwtToken: string }>(TECH_TIDE_AUTH_URL, formData, {
+    const { data } = await axiosInstance.post(TECH_TIDE_AUTH_URL, formData, {
         headers: {
             "Content-Type": "multipart/form-data"
         },
         withCredentials: true // This ensures that credentials (cookies) are sent along with the request
     });
+
     if(data.jwtToken){
+        console.log(data.jwtToken);
         await createSession(data.jwtToken);
         redirect(routeTo);
     }else{

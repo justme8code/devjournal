@@ -16,6 +16,8 @@ export const ListOfContents = () => {
     const [error, setError] = useState<string | null>(null);
 
     const fetchContents = useCallback(async () => {
+
+        console.log("calling...")
         if (tab === "Feed") {
             try {
                 const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}?page=0&size=100`);
@@ -36,6 +38,7 @@ export const ListOfContents = () => {
                 setError("Could not get contents");
             }
         }
+
     }, [addPost, posts, tab, updatePost, modifyPosts]);
 
     useEffect(() => {
@@ -45,16 +48,17 @@ export const ListOfContents = () => {
     return (
         <div className="w-full pt-20 max-md:pt-0 p-2">
             {error && <div className="text-red-500 text-center my-4">{error}</div>}
-            {posts === null && <div className="text-red-500 text-center my-4">No {tab} posts yet</div>}
-
-            {posts === null ? null : posts.length === 0 ? (
-                <div className="grid grid-cols-1 px-6 gap-6" aria-live="polite">
-                    {Array.from({ length: 20 }).map((_, i) => (
+            {/*{posts === null && <div className="text-red-500 text-center my-4">No {tab} posts yet</div>}*/}
+            {
+                !posts &&  <div className="grid grid-cols-1 px-6 gap-6" aria-live="polite">
+                    {Array.from({ length: 10 }).map((_, i) => (
                         <ContentShimmer key={i} />
                     ))}
                 </div>
-            ) : (
-                <div className="grid grid-cols-1 xl:grid-cols-1 gap-6 w-full">
+            }
+
+            {
+                posts && posts?.length > 0 && <div className="grid grid-cols-1 xl:grid-cols-1 gap-6 w-full">
                     {posts.map((post) => (
                         <motion.div
                             key={post.id}
@@ -72,7 +76,8 @@ export const ListOfContents = () => {
                         </motion.div>
                     ))}
                 </div>
-            )}
+            }
+
         </div>
     );
 };
