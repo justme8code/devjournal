@@ -20,7 +20,6 @@ const CustomImagePlaceholder = ({
                                     alt,
                                     width = 800,
                                     height = 800,
-                                    className = "",
                                     imageClassName = "",
                                 }: Props) => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -29,13 +28,11 @@ const CustomImagePlaceholder = ({
     const verifiedSrc = isValidUrl(src) ? src : undefined;
 
     return (
-        <div className={`w-full h-full ${className}`}>
+        <div className={`w-full h-full  `}>
             {/* Placeholder (while loading or on error) */}
             {!imageLoaded || imageError ? (
-                <div className="bg-gray-300 p-4">
-                    <div className="flex items-center justify-center">
+                <div className="bg-gray-300 p-4 flex items-center justify-center">
                         <p className="text-gray-500"><ImageOff /></p>
-                    </div>
                 </div>
             ) : null}
 

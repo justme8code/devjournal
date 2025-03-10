@@ -16,8 +16,8 @@ export const LogoutButton = () => {
         <>
 
             { loggedIn &&
-                <button className={"flex"} onClick={() => logOut()}>
-                    <LogOut/>Logout
+                <button className={"flex gap-2"} onClick={() => logOut()}>
+                    <LogOut/> <h3>Logout</h3>
                 </button>
             }
         </>

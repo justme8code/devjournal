@@ -5,6 +5,7 @@ import { FaSearch, FaTimes } from 'react-icons/fa';
 import { Logo } from '@/app/Logo';
 import Link from 'next/link';
 import { SideBarMobile } from './SideBarMobile';
+import {LogoutButton} from "@/app/components/LogoutButton";
 
 export const MobileNavbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -26,6 +27,7 @@ export const MobileNavbar = () => {
                         className="w-full max-w-xl p-3 px-4 bg-neutral-100 outline-none rounded-full hidden md:block"
                     />
 
+
                     {/* Mobile Search Icon */}
                     <div className={"flex gap-4"}>
                         <button
@@ -42,9 +44,16 @@ export const MobileNavbar = () => {
                 </div>
 
                 {/* Navigation Links */}
-                <div className="hidden md:flex gap-6 font-medium">
-                    <Link href="/" className="hover:text-indigo-500">Home</Link>
+                <div className={" flex  gap-10"}>
+                    <div className="hidden md:flex gap-6 font-medium ">
+                        <Link href="/" className="hover:text-indigo-500">Home</Link>
+                    </div>
+                    <div className={"hidden md:flex gap-6 font-medium"}>
+                        <LogoutButton />
+                    </div>
+
                 </div>
+
             </nav>
 
             {/* Mobile Search Overlay */}

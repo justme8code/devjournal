@@ -4,7 +4,7 @@ import { TECH_TIDE_AUTH_URL } from "@/app/api_urls";
 import { redirect } from "next/navigation";
 import {createSession, deleteSession} from "@/app/api/session"; // Server-side cookie handling
 
-const routeTo = "/contents/create"
+const routeTo = "/contents/contents"
 const loginRoute = "/login"
 
 export async function handleLogin(previousState: unknown, formData: FormData) {
