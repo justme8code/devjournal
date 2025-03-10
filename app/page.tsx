@@ -8,6 +8,8 @@ import { Logo } from "@/app/Logo";
 import React from "react";
 import {motion} from "framer-motion";
 import {SideBarMobile} from "@/app/components/SideBarMobile";
+import {AboutUs} from "@/app/components/AboutUs";
+import {ContactUs} from "@/app/components/ContactUs";
 
 export default function Home() {
 
@@ -26,6 +28,11 @@ export default function Home() {
             <nav className="flex justify-between items-center fixed top-0 bg-white w-full shadow-md">
                 <Logo />
                 <SideBarMobile/>
+                <ul className={"hidden  md:flex md:gap-4 items-center space-x-5 px-5"}>
+                    <Link href="/contents" className={"text-gray-600 hover:text-gray-900"}>Contents</Link>
+                    <AboutUs/>
+                    <ContactUs/>
+                </ul>
             </nav>
 
             <div className="flex flex-col h-screen bg-white text-gray-900">
@@ -39,7 +46,6 @@ export default function Home() {
                                     <Image
                                         src={tech.src}
                                         alt="Tech Image"
-                                        className=""
                                         width={1000}
                                         height={1000}
                                     />
