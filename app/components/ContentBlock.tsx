@@ -55,8 +55,11 @@ const ContentBlock = ({ id, title, description, coverImageUrl }: Props) => {
             {isPending ? (
                 <p className={"bg-indigo-200 p-2 rounded-full animate-pulse"}>Deleting Content...</p>
             ) : (
-                <div className="flex flex-col max-sm:gap-7">
-                    <div className="flex items-center text-left max-w-xl space-y-4 max-sm:flex-col ">
+                <div className="flex flex-col  gap-7">
+                    {successMessage && (
+                        <div className="mt-2 text-green-600 font-semibold">{successMessage}</div>
+                    )}
+                    <div className="flex items-center sm:space-x-10 text-left max-w-xl space-y-4  max-sm:flex-col ">
 
                         <div>
                             {loggedIn && (
@@ -77,31 +80,32 @@ const ContentBlock = ({ id, title, description, coverImageUrl }: Props) => {
                                 <p className="mt-2 prose-sm text-gray-600">{description}</p>
                             </Link>
                         </div>
-                        <CustomImagePlaceholder src={coverImageUrl} alt={"post Image"}
-                                                className={"overflow-hidden flex-shrink-0 max-h-52  max-sm:inline sm:max-w-28"}
-                                                imageClassName={"object-cover w-full h-full"}/>
+                        <CustomImagePlaceholder
+                            src={coverImageUrl}
+                            alt="post Image"
+                            className="overflow-hidden max-h-52 max-sm:inline sm:max-w-60 sm:max-h-40"
+                            imageClassName="object-contain w-full h-full sm:max-w-40  sm:max-h-40"
+                        />
+
+
 
 
                     </div>
 
 
-
-
                     <div className="flex gap-6 ">
-                        <Button  text={"like"} icon={<Heart/>} onClick={() => handleComingSoon('like')}/>
+                        <Button  text={"20k"} icon={<Heart/>} onClick={() => handleComingSoon('like')}/>
 
-                        <Button  text={"bookmark"} icon={<Bookmark/>} onClick={() => handleComingSoon('bookmark')}/>
+                        <Button  text={"30k"} icon={<Bookmark/>} onClick={() => handleComingSoon('bookmark')}/>
 
-                        <Button  text={"comments"} icon={<MessagesSquareIcon/>} onClick={() => handleComingSoon('comments')}/>
+                        <Button  text={"40k"} icon={<MessagesSquareIcon/>} onClick={() => handleComingSoon('comments')}/>
                         {showPopup && (
                             <div className="absolute bg-gray-800 text-white text-xs rounded py-1 px-2 bottom-full mb-2">
                                 Coming Soon!
                             </div>
                         )}
                     </div>
-                    {successMessage && (
-                        <div className="mt-2 text-green-600 font-semibold">{successMessage}</div>
-                    )}
+
 
                 </div>
             )}

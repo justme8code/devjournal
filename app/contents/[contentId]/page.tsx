@@ -74,7 +74,7 @@ export default function View() {
             {/* Navbar */}
 
                 {/* Content Section */}
-                <main className="container flex flex-col mx-auto px-4  max-w-2xl justify-center items-center ">
+                <main className="container flex flex-col mx-auto px-2  max-w-2xl justify-center items-center ">
                     <div >
 
 

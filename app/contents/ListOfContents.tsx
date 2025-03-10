@@ -48,6 +48,9 @@ export const ListOfContents = () => {
     return (
         <div className="w-full pt-20 max-md:pt-0 p-2">
             {error && <div className="text-red-500 text-center my-4">{error}</div>}
+            <div className={"hidden max-sm:block"}>
+                <h1 className={"font-bold p-2"}>{tab}</h1>
+            </div>
             {/*{posts === null && <div className="text-red-500 text-center my-4">No {tab} posts yet</div>}*/}
             {
                 !posts &&  <div className="grid grid-cols-1 px-6 gap-6" aria-live="polite">
@@ -73,8 +76,10 @@ export const ListOfContents = () => {
                                 description={post.description}
                                 coverImageUrl={post.coverImageUrl}
                             />
+
                         </motion.div>
                     ))}
+                    <div className={"h-0.5 w-full bg-gray-200"}></div>
                 </div>
             }
 

@@ -48,7 +48,7 @@ export const EditContent = ({contentId,blogPost}:{contentId:string,blogPost:Blog
 
 
 
-            <div className="relative container mx-auto p-8 max-w-3xl">
+            <div className="relative container mx-auto p-2 max-w-3xl">
                 {contentId &&  <MyEditor contentId={contentId} initialData={blogPost}
                                          onSaveAction={blogPost1 => {
                                              handleUpdateBlog(blogPost1);

@@ -4,6 +4,7 @@ import { Button } from "@/app/components/Button";
 import { FaTimes } from "react-icons/fa";
 import { Blocks } from "lucide-react";
 import {useTabStore} from "@/app/store/useTabStore";
+import {navTabs} from "@/app/const_data";
 
 export const SideBarMobile = () => {
     const {tab,setTab} = useTabStore();
@@ -14,17 +15,12 @@ export const SideBarMobile = () => {
         setSidebarOpen(false); // Close sidebar when a category is selected
     };
 
-    const buttons = [
-        "Latest", "Trend", "Most Viewed", "AI", "Programming",
-        "Cybersecurity", "Cloud", "My Posts", "Saved",
-        "Podcasts", "Tech News", "Startups"
-    ];
 
     return (
         <>
             {/* Mobile Sidebar Button */}
             <div className="md:hidden  flex justify-between items-center bg-white ">
-                <h3 className="font-semibold">{tab}</h3>
+                <h3 className="font-semibold"></h3>
                 <button onClick={() => setSidebarOpen(true)} className="p-2 bg-gray-100 rounded-full">
 
                     <Blocks  className="text-gray-700" />
@@ -43,7 +39,7 @@ export const SideBarMobile = () => {
                 </button>
                 <h3 className="text-xl font-semibold mb-4">Blog Categories</h3>
                 <div className="flex flex-col gap-3">
-                    {buttons.map((btn) => (
+                    {navTabs.map((btn) => (
                         <Button
                             key={btn}
                             text={btn}
