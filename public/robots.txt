@@ -1,7 +1,10 @@
 User-agent: *
-Disallow: /login
+
 Disallow: /contents/create
 Disallow: /contents/*/edit
-Disallow: /contents/*/delete
+
+Allow: /contents
+Allow: /contents/*
+
 
 Sitemap: https://devjournal.vercel.app/sitemap.xml
