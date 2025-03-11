@@ -77,12 +77,14 @@ const ContentBlock = ({ id, title, description, coverImageUrl }: Props) => {
                                 <p className="mt-2 prose-sm text-gray-600">{description}</p>
                             </Link>
 
-                        <CustomImagePlaceholder
-                            src={coverImageUrl}
-                            alt="post Image"
-                            className="overflow-hidden max-h-52 max-sm:inline sm:max-w-60 sm:max-h-40 "
-                            imageClassName="object-contain w-full h-full sm:max-w-60  sm:max-h-60"
-                        />
+                        {
+                            coverImageUrl&&<CustomImagePlaceholder
+                                src={coverImageUrl}
+                                alt="post Image"
+                                className="overflow-hidden max-h-52 max-sm:inline sm:max-w-60 sm:max-h-40 "
+                                imageClassName="object-contain w-full h-full sm:max-w-64  sm:max-h-64"
+                            />
+                        }
                     </section>
 
 
