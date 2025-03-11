@@ -4,4 +4,4 @@ Disallow: /contents/create
 Disallow: /contents/*/edit
 Disallow: /contents/*/delete
 
-Sitemap: https://techtide.vercel.app/sitemap.xml
+Sitemap: https://devjournal.vercel.app/sitemap.xml
