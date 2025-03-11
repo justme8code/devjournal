@@ -16,37 +16,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: `${devJournal} - The Future of Tech`,
+    title: "DevJournal - AI, Programming & Tech Insights",
     authors: [{ name: "Thompson Oretan", url: `${devJournal}` }],
-    applicationName: "TechTide",
+    applicationName: "DevJournal",
     category: "Technology",
     robots: "index, follow",
-    description: "Stay updated with the latest in tech, AI, and programming.",
+    description: "Explore the latest in AI, programming, and technology. Tutorials, insights, and guides for developers and tech enthusiasts.",
+    keywords: ["AI", "programming", "technology", "software development", "coding", "tech trends"],
     openGraph: {
-        title: "DevJournal - The Future of Tech",
-        description: "Stay updated with the latest in tech, AI, and programming.",
+        title: "DevJournal - AI, Programming & Tech Insights",
+        description: "Explore the latest in AI, programming, and technology. Tutorials, insights, and guides for developers and tech enthusiasts.",
         url: `${devJournal}`,
-        siteName: "TechTide",
+        siteName: "DevJournal",
         type: "website",
         images: [
             {
-                url: `${devJournal}/logo.svg`, // Replace with actual image
+                url: `${devJournal}/og-image.png`, // Use a high-quality preview image
                 width: 1200,
                 height: 630,
-                alt: "TechTide Cover Image",
-            },
-            {
-                url: `${devJournal}/tech.svg`, // Replace with actual image
-                alt: "Devjournal Cover Image",
+                alt: "DevJournal Cover Image",
             }
         ],
+        locale: "en_US",
     },
     twitter: {
         card: "summary_large_image",
-        title: "DevJournal - The Future of Tech",
-        description: "Stay updated with the latest in tech, AI, and programming.",
-        creator: "@justme8code", // Replace with your Twitter handle if you have one
-        images: [`${devJournal}/logo.svg`], // Same image for Twitter preview
+        title: "DevJournal - AI, Programming & Tech Insights",
+        description: "Stay ahead with AI, programming, and technology insights. Learn, explore, and grow with DevJournal.",
+        creator: "@justme8code",
+        images: [`${devJournal}/og-image.png`], // Ensure the image works well for Twitter previews
     },
 };
 

@@ -4,7 +4,6 @@ import ContentBlock from "@/app/components/ContentBlock";
 import { BlogPost } from "@/app/types";
 import { useCallback, useEffect, useState } from "react";
 import { axiosInstance } from "@/app/axios";
-import { motion } from "motion/react";
 import {useBlogStore} from "@/app/store/useBlogStore";
 import {ContentShimmer} from "@/app/components/ContentShimmer";
 import {TECH_TIDE_BLOGS_URL} from "@/app/api_urls";
@@ -63,21 +62,15 @@ export const ListOfContents = () => {
             {
                 posts && posts?.length > 0 && <div className="grid grid-cols-1 xl:grid-cols-1 gap-6 w-full">
                     {posts.map((post) => (
-                        <motion.div
-                            key={post.id}
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: [0, 0.71, 0.2, 1.01] }}
-                            className="w-full flex justify-center"
-                        >
+
                             <ContentBlock
+                                key={post.id}
                                 id={post.id}
                                 title={post.title}
                                 description={post.description}
                                 coverImageUrl={post.coverImageUrl}
                             />
 
-                        </motion.div>
                     ))}
                     <div className={"h-0.5 w-full bg-gray-200"}></div>
                 </div>

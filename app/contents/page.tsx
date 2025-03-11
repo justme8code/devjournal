@@ -5,20 +5,20 @@ import { ContentsNavbar } from "@/app/components/ContentsNavbar";
 import { ListOfContents } from "@/app/contents/ListOfContents";
 import { MobileNavbar } from '../components/MobileNavabar';
 import Head from "next/head";
-const devJournal = "https://devjournal.vercel.app";
 
 export default function ContentPage() {
 
     return (
         <>
+
             <Head>
-                <title>Read on DevJournal</title>
-                <meta name="description" content="Stay updated with the latest in tech, AI, and programming." />
-                <meta name="keywords" content="Tech, AI, Programming, Java, React, Spring Boot" />
-                <meta name="author" content="Thompson" />
-                <meta property="og:title" content={`${devJournal} - The Future of Tech`} />
-                <meta property="og:description" content="Stay updated with the latest in tech, AI, and programming." />
-                <meta property="og:url" content={`${devJournal}/contents`} />
+                <title>Latest Blogs | DevJournal</title>
+                <meta name="description" content="Explore the latest tech blogs, programming tips, and AI-driven insights on DevJournal." />
+                <meta name="keywords" content="tech, programming, AI, software development, blogs" />
+                <meta property="og:title" content="DevJournal - The Best Tech Blogs" />
+                <meta property="og:description" content="Stay updated with the latest tech trends and insights from top developers." />
+                <meta property="og:image" content="/default-blog-image.jpg" />
+                <meta property="og:url" content="https://devjournal.vercel.app/contents" />
             </Head>
 
                 <MobileNavbar/>
