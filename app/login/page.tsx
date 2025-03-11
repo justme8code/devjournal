@@ -9,7 +9,7 @@ export default function Admin() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-96 flex flex-col items-center">
-                <h2 className="text-2xl font-semibold mb-6">Tech Tide Writer</h2>
+                <h2 className="text-2xl font-semibold mb-6">DevJournal Admin</h2>
                 <form action={action} className="w-full">
                     <input
                         type="text"
