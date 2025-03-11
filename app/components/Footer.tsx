@@ -4,7 +4,7 @@ export const Footer = () => {
               {/* Footer */}
               <footer className="bg-gray-50 py-6 mt-12 shadow-md">
                   <div className="container mx-auto text-center">
-                      <p className="text-gray-600">&copy; 2025 TechTide. All rights reserved.</p>
+                      <p className="text-gray-600">&copy; 2025 DevJournal. All rights reserved.</p>
                   </div>
 
               </footer>
