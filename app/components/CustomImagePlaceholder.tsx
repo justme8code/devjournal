@@ -28,7 +28,7 @@ const CustomImagePlaceholder = ({
     const verifiedSrc = isValidUrl(src) ? src : undefined;
 
     return (
-        <div className={`w-full h-full  `}>
+        <div className={``}>
             {/* Placeholder (while loading or on error) */}
             {!imageLoaded || imageError ? (
                 <div className="bg-gray-300 p-4 flex items-center justify-center">

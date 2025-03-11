@@ -55,7 +55,7 @@ const ContentBlock = ({ id, title, description, coverImageUrl }: Props) => {
             {isPending ? (
                 <p className={"bg-indigo-200 p-2 rounded-full animate-pulse"}>Deleting Content...</p>
             ) : (
-                <div className="flex flex-col  gap-2">
+                <div className="flex flex-col  gap-5">
                     {successMessage && (
                         <div className="mt-2 text-green-600 font-semibold">{successMessage}</div>
                     )}
@@ -70,7 +70,7 @@ const ContentBlock = ({ id, title, description, coverImageUrl }: Props) => {
                             </Link>
                         </div>
                     )}
-                    <section className="flex items-center sm:space-x-10 text-left max-w-xl space-y-4  max-sm:flex-col ">
+                    <section className="flex items-center  justify-between sm:space-x-10 text-left max-w-xl space-y-4  max-sm:flex-col ">
 
                             <Link href={`/contents/${id}`} className="hover:underline">
                                 <h2 className="prose-xl font-bold">{title}</h2>
@@ -80,8 +80,8 @@ const ContentBlock = ({ id, title, description, coverImageUrl }: Props) => {
                         <CustomImagePlaceholder
                             src={coverImageUrl}
                             alt="post Image"
-                            className="overflow-hidden max-h-52 max-sm:inline sm:max-w-60 sm:max-h-40"
-                            imageClassName="object-contain w-full h-full sm:max-w-40  sm:max-h-40"
+                            className="overflow-hidden max-h-52 max-sm:inline sm:max-w-60 sm:max-h-40 "
+                            imageClassName="object-contain w-full h-full sm:max-w-60  sm:max-h-60"
                         />
                     </section>
 

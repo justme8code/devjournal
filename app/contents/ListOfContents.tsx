@@ -41,7 +41,10 @@ export const ListOfContents = () => {
     }, [addPost, posts, tab, updatePost, modifyPosts]);
 
     useEffect(() => {
-        fetchContents().catch(() => setError("Could not get contents"));
+        if(tab){
+            fetchContents().catch(() => setError("Could not get contents"));
+        }
+
     }, [fetchContents, tab]);
 
     return (
@@ -61,18 +64,17 @@ export const ListOfContents = () => {
 
             {
                 posts && posts?.length > 0 && <div className="grid grid-cols-1 xl:grid-cols-1 gap-6 w-full">
-                    {posts.map((post) => (
-
+                    {posts.map((post) => (<div key={post.id} className={"space-y-6 flex flex-col items-center justify-center"}>
                             <ContentBlock
-                                key={post.id}
                                 id={post.id}
                                 title={post.title}
                                 description={post.description}
                                 coverImageUrl={post.coverImageUrl}
                             />
-
+                        <div className={"h-0.5 w-full bg-gray-200"}></div>
+                    </div>
                     ))}
-                    <div className={"h-0.5 w-full bg-gray-200"}></div>
+
                 </div>
             }
 
