@@ -2,9 +2,9 @@ import React from 'react';
 import { SidePanel } from "@/app/components/SidePanel";
 import { Footer } from "@/app/components/Footer";
 import { ContentsNavbar } from "@/app/components/ContentsNavbar";
-import { ListOfContents } from "@/app/contents/ListOfContents";
 import { MobileNavbar } from '../components/MobileNavabar';
 import Head from "next/head";
+import ListOfContents from './ListOfContents';
 
 export default function ContentPage() {
 
