@@ -2,8 +2,8 @@ import React from 'react';
 import {MainComponentForContentPage} from "@/app/contents/MainComponentForContentPage";
 import {Metadata} from "next";
 
-export async function generateMetadata({ params }: { params: { category: string } }): Promise<Metadata> {
-    const category = decodeURIComponent(params.category);
+export async function generateMetadata({ params }: { params:  Promise<{ category: string }> }): Promise<Metadata> {
+    const category = decodeURIComponent((await params).category);
     return {
         title: `Feed Blogs | DevJournal`,
         description: `Explore Feed tech blogs, programming tips, and AI-driven insights on DevJournal.`,
