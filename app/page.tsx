@@ -10,7 +10,7 @@ import {motion} from "framer-motion";
 import {SideBarMobile} from "@/app/components/SideBarMobile";
 import {AboutUs} from "@/app/components/AboutUs";
 import {ContactUs} from "@/app/components/ContactUs";
- 
+
 export default function Home() {
 
     return (
