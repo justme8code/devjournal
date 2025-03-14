@@ -2,7 +2,7 @@
 import tech from "@/public/tech.svg";
 import Link from "next/link";
 import { Footer } from "@/app/components/Footer";
-import Head from "next/head";
+
 import Image from "next/image";
 import { Logo } from "@/app/Logo";
 import React from "react";
@@ -10,20 +10,11 @@ import {motion} from "framer-motion";
 import {SideBarMobile} from "@/app/components/SideBarMobile";
 import {AboutUs} from "@/app/components/AboutUs";
 import {ContactUs} from "@/app/components/ContactUs";
-
+ 
 export default function Home() {
 
     return (
         <>
-            <Head>
-                <title>TechTide - The Future of Tech</title>
-                <meta name="description" content="Stay updated with the latest in tech, AI, and programming." />
-                <meta name="keywords" content="Tech, AI, Programming, Java, React, Spring Boot" />
-                <meta name="author" content="Thompson" />
-                <meta property="og:title" content="TechTide - The Future of Tech" />
-                <meta property="og:description" content="Stay updated with the latest in tech, AI, and programming." />
-                <meta property="og:url" content="https://techtide.vercel.app" />
-            </Head>
 
             <nav className="flex justify-between items-center fixed top-0 bg-white w-full shadow-md">
                 <Logo />

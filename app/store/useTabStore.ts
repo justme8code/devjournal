@@ -6,6 +6,6 @@ interface TabStore {
 }
 
 export const useTabStore = create<TabStore>((set) => ({
-    tab:"Feed",
+    tab:"feed",
     setTab:(tab:string) => set({tab:tab}),
 }));

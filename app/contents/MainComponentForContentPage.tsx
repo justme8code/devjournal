@@ -14,7 +14,7 @@ export const MainComponentForContentPage = ({category}:{category:string}) => {
                 <div className="flex justify-center ">
                     {/* Main Content */}
                     <main className="w-full max-w-2xl  ">
-                        <ContentsNavbar />
+                        <ContentsNavbar  currentNavbar={category}/>
                         <Suspense fallback={<Loading />}>
                             <ListOfContents category={category}/>
                         </Suspense>

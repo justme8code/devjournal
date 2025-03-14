@@ -2,22 +2,23 @@
 
 import { Button } from "@/app/components/Button";
 import { useRouter} from "next/navigation";
-import { useTabStore } from "@/app/store/useTabStore";
 import { navTabs } from "@/app/const_data";
 
-export const ContentsNavbar = () => {
-    const { tab, setTab } = useTabStore();
+export const ContentsNavbar = ({currentNavbar}:{currentNavbar:string}) => {
+
     const router = useRouter();
 
-    const handleButtonClick = (button: string) => {
-        setTab(button);
+    const decodedNavbar = decodeURIComponent(currentNavbar || "feed");
 
-        if (button === "Feed") {
+
+    const handleButtonClick = (button: string) => {
+        if (button === "feed") {
             router.push("/contents", { scroll: false }); // Remove query params for default feed
         } else {
             const category = encodeURIComponent(button.toLowerCase());
             router.push(`/contents/category/${category}`, { scroll: false });
         }
+
     };
 
     return (
@@ -30,7 +31,7 @@ export const ContentsNavbar = () => {
                             key={btn}
                             text={btn}
                             className={`font-bold px-3 py-1 rounded-full whitespace-nowrap ${
-                                tab === btn ? "bg-indigo-500 text-white" : "bg-gray-100 hover:bg-indigo-200"
+                                decodedNavbar === btn ? "bg-indigo-500 text-white" : "bg-gray-100 hover:bg-indigo-200"
                             }`}
                             onClick={() => handleButtonClick(btn)}
                         />

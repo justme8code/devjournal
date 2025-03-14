@@ -20,7 +20,7 @@ export const SideBarMobile = () => {
         setTab(button);
         setSidebarOpen(false); // Close sidebar when a category is selected
 
-        if (button === "Feed") {
+        if (button === "feed") {
             router.push("/contents", { scroll: false }); // Remove query params for default feed
         } else {
             const category = encodeURIComponent(button.toLowerCase());
