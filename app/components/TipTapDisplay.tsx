@@ -1,3 +1,4 @@
+'use client';
 import {EditorContent, JSONContent, useEditor} from "@tiptap/react";
 import {CustomTipTapExtensionConfig} from "@/app/components/editor_config";
 

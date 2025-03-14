@@ -9,14 +9,23 @@ import {LogoutButton} from "@/app/components/LogoutButton";
 import Link from "next/link";
 import {AboutUs} from "@/app/components/AboutUs";
 import {ContactUs} from "@/app/components/ContactUs";
+import {useRouter} from "next/navigation";
 
 export const SideBarMobile = () => {
     const {tab,setTab} = useTabStore();
     const [sidebarOpen, setSidebarOpen] = useState(false); // Controls sidebar visibility
+    const router = useRouter();
 
     const handleButtonClick = (button: string) => {
         setTab(button);
         setSidebarOpen(false); // Close sidebar when a category is selected
+
+        if (button === "Feed") {
+            router.push("/contents", { scroll: false }); // Remove query params for default feed
+        } else {
+            const category = encodeURIComponent(button.toLowerCase());
+            router.push(`/contents/category/${category}`, { scroll: false });
+        }
     };
 
 
@@ -26,7 +35,6 @@ export const SideBarMobile = () => {
             <div className="md:hidden  flex justify-between items-center bg-white ">
                 <h3 className="font-semibold"></h3>
                 <button onClick={() => setSidebarOpen(true)} className="p-2 bg-gray-100 rounded-full">
-
                     <Blocks  className="text-gray-700" />
                 </button>
             </div>

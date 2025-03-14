@@ -8,16 +8,17 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-const devJournal = "https://devjournal.vercel.app";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
+    metadataBase: new URL("https://devjournal.vercel.app"), // ✅ This fixes the issue
     title: "DevJournal - AI, Programming & Tech Insights",
-    authors: [{ name: "Thompson Oretan", url: `${devJournal}` }],
+    authors: [{ name: "Thompson Oretan", url: "https://devjournal.vercel.app" }],
     applicationName: "DevJournal",
     category: "Technology",
     robots: "index, follow",
@@ -26,12 +27,12 @@ export const metadata: Metadata = {
     openGraph: {
         title: "DevJournal - AI, Programming & Tech Insights",
         description: "Explore the latest in AI, programming, and technology. Tutorials, insights, and guides for developers and tech enthusiasts.",
-        url: `${devJournal}`,
+        url: "https://devjournal.vercel.app",
         siteName: "DevJournal",
         type: "website",
         images: [
             {
-                url: `${devJournal}/og-image.png`, // Use a high-quality preview image
+                url: "/og-image.png", // Now this works correctly!
                 width: 1200,
                 height: 630,
                 alt: "DevJournal Cover Image",
@@ -44,9 +45,10 @@ export const metadata: Metadata = {
         title: "DevJournal - AI, Programming & Tech Insights",
         description: "Stay ahead with AI, programming, and technology insights. Learn, explore, and grow with DevJournal.",
         creator: "@justme8code",
-        images: [`${devJournal}/og-image.png`], // Ensure the image works well for Twitter previews
+        images: ["/og-image.png"], // This also works correctly now!
     },
 };
+
 
 
 export default function RootLayout({

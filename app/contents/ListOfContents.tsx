@@ -1,25 +1,28 @@
-// ListOfContents.tsx (Server Component)
 import ContentBlock from "@/app/components/ContentBlock";
 import { BlogPost } from "@/app/types";
 import { axiosInstance } from "@/app/axios";
 import { TECH_TIDE_BLOGS_URL } from "@/app/api_urls";
+import {exploreBlogPost} from "@/app/contents/actions";
 
-async function fetchContents() {
+async function fetchContents(category?: string) {
     try {
-        const { data } = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}?page=0&size=100`);
-        return data.content.length ? data.content : null;
+        if(category && category) {
+            const {data} = await exploreBlogPost(category)
+            return data;
+        }else{
+            const {data} = await axiosInstance.get(`${TECH_TIDE_BLOGS_URL}?page=0&size=100`)
+            return data.content.length ? data.content : null;
+        }
     } catch {
         return null;
     }
 }
 
-export default async function ListOfContents() {
-    const posts = await fetchContents(); // Fetch data on the server
+export default async function ListOfContents({category}:{category?: string}) {
+    const posts = await fetchContents(category); // Fetch data based on category
 
     return (
         <div className="w-full pt-20 max-md:pt-0 p-2">
-            <h1 className="font-bold p-2">Feed</h1>
-
             {posts === null && <div className="text-red-500 text-center my-4">No posts yet</div>}
 
             {posts && posts.length > 0 && (
